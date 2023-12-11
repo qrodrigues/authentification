@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 
-function Account() {
+function Account(props) {
     return (
-        <div className="navbar">
+        <div>
             <Link className="nav_links" to="/">
-                Se connecter
+                {props.user.isLoggedIn ? props.user.username : "Se connecter"}
+                <i class="fa-regular fa-user"></i>
             </Link>
            
         </div>

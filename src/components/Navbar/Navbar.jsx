@@ -3,12 +3,21 @@ import './Navbar.css'
 import Account from "./Account/Account";
 
 function Navbar() {
+
+    const user = {
+        username : "Mosca",
+        name:"Rodrigues",
+        lastname:"Anthony",
+        email : "XXXXXXXXXXXXXXX",
+        isLoggedIn : true
+    }
+
     return (
         <div className="navbar">
             <Link to="/">
                 <img className="logo" src="logo_blog.png" alt="" />
             </Link>
-           <Account />
+           <Account user={user} />
         </div>
       )
 }
