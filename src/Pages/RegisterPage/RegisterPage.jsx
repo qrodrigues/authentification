@@ -1,14 +1,21 @@
+import './RegisterPage.scss'
+
 function App() {
 
   return (
     <>
-     <h1>Inscription</h1>
-     <div className="flex flex-col gap-y-2">
-      <input type="text" placeholder="Adresse email" />
-      <input type="text" placeholder="Mot de passe" />
-      <input type="text" placeholder="Confirmation de mot de passe" />
-      <button>S'inscrire</button>
-     </div>
+      <div class="register-page">
+        <div class="container">
+          <form>
+            <h1>Formulaire d'inscription</h1>
+            <input type="text" placeholder="Nom d'utilisateur" />
+            <input type="text" placeholder="Adresse email" />
+            <input type="password" placeholder="Mot de passe" />
+            <input type="password" placeholder="Confirmation de mot de passe" />
+            <a class="button" href="#">S'inscrire</a>
+          </form>
+        </div>
+      </div>
     </>
   )
 }

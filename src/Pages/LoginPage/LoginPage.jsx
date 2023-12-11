@@ -4,15 +4,17 @@ function App() {
 
   return (
     <>
-      <div class="card login-page">
-        <form>
-          <h1>Login Page</h1>
-          <input type="text" placeholder="Nom d'utilisateur" />
-          <input type="password" placeholder="Mot de passe" />
-          <a class="button" href="#">Se connecter</a>
-          <p><input class="check" type="checkbox" />Remember me<a class="forget" href="#">Forgot account?</a></p>
-          <h5>create account?<a href="#"> Create</a></h5>
-        </form>
+      <div class="login-page">
+        <div class="container">
+          <form>
+            <h1>Formulaire de connexion</h1>
+            <input type="text" placeholder="Nom d'utilisateur" />
+            <input type="password" placeholder="Mot de passe" />
+            <a class="button" href="#">Se connecter</a>
+            <p><input class="check" type="checkbox" />Se souvenir de moi<a class="forget" href="#">Mot de passe oublié ?</a></p>
+            <h5>Pas de compte ?<a href="#"> Créer un compte</a></h5>
+          </form>
+        </div>
       </div>
     </>
   )
