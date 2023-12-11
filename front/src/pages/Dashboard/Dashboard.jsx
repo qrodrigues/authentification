@@ -7,7 +7,6 @@ function App(props) {
         <div className="user-area">
           <div className="user-label">{props.username}</div>
         </div>
-        {if article.propietaire == props.user }
         <div className="user-action">
           <a className="create-btn" href="#">Créer un article </a>
         </div>
