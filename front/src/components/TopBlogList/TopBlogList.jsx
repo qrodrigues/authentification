@@ -1,25 +1,35 @@
-// import { Link } from "react-router-dom";
+
+import TopBlog from "./TopBlog/TopBlog";
 import "./TopBlogList.scss";
 
 function TopBlogList() {
 
+    const articles = [
+      {
+        title: "Apprendre à coder avec SINGH",
+        content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        link:"articles/1"
+    },
+    {
+      title: "ChatGPT pour les nuls",
+      content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      link:"articles/2"
+  },
+  {
+    title: "Les meilleures fraudes de 2023",
+    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    link:"articles/3"
+},
+  ]
+
+
     return (
       <>   
         <div className="top_blog">
-            {/* <Link to={}></Link> */}
                 <h2>Les meilleurs blogs <i className="fa-regular fa-star"></i></h2>
-                <div className="top_blog_item">
-                <h3>Apprendre à coder avec SINGH</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
-                </div>
-                <div className="top_blog_item">
-                <h3>ChatGPT pour les nuls</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
-                </div>
-                <div className="top_blog_item">
-                <h3>Les meilleures fraudes de 2023</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.</p>
-                </div>
+                {articles.map((article, index) => (
+                                  <TopBlog article={article} key={index}/>
+                ))}
             </div>
       </>
     )

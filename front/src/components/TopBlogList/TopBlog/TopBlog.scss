@@ -1,0 +1,26 @@
+.top_blog_item{
+    background-color: #242424bd;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    margin: 0.5rem;
+    border: 1.323px solid #948E8E;
+    border-radius: 5px;
+    width: 400px;
+    text-decoration: none;
+
+    &:hover{
+        background-color: #343434bd;
+    }
+
+    h3{
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    p{
+        margin: 0.2rem 0px;
+        color: rgba(255, 255, 255, 0.627);
+    }
+}
