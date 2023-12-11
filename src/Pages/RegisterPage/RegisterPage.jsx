@@ -1,4 +1,5 @@
 import './RegisterPage.scss'
+import { Link } from "react-router-dom";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
             <input type="password" placeholder="Mot de passe" />
             <input type="password" placeholder="Confirmation de mot de passe" />
             <a class="button" href="#">S'inscrire</a>
+            <h5>Déjà un compte ?<Link to="/login"><a> Connectez-vous</a></Link></h5>
           </form>
         </div>
       </div>

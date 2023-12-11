@@ -8,8 +8,7 @@ function Navbar() {
         username : "Mosca",
         name:"Rodrigues",
         lastname:"Anthony",
-        email : "XXXXXXXXXXXXXXX",
-        isLoggedIn : true
+        email : "XXXXXXXXXXXXXXX"
     }
 
     return (
