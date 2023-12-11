@@ -1,0 +1,26 @@
+.navbar{
+    width: 100%;
+    /* background:red; */
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #000 0%, rgba(255, 255, 255, 0.00) 100%);
+}
+
+.navbar .logo{
+   width: 128px;
+   margin: 0.8rem;
+}
+
+.nav_links{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 7.27px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    border: 1.323px solid black;
+    margin: 0.8rem;
+}

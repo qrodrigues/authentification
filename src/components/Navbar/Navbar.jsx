@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import './Navbar.css'
+import Account from "./Account/Account";
 
-function App() {
+function Navbar() {
     return (
-        <div className="flex mt-4 gap-x-8">
-            <Link to="/home">Accueil</Link>
-            <Link to="/register">S'inscrire</Link>
-            <Link to="/login">Se connecter</Link>
-            <Link to="/dashboard">Dashboard</Link>
+        <div className="navbar">
+            <Link to="/">
+                <img className="logo" src="logo_blog.png" alt="" />
+            </Link>
+           <Account />
         </div>
       )
 }
 
-export default App
+export default Navbar

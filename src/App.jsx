@@ -3,11 +3,11 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import RegisterPage from './components/RegisterPage'
-import LoginPage from './components/LoginPage'
+import RegisterPage from './pages/RegisterPage/RegisterPage'
+import LoginPage from './pages/LoginPage/LoginPage'
 import Navbar from './components/Navbar/Navbar'
-import HomePage from './components/Home'
-import DashboardPage from './components/Dashboard'
+import HomePage from './pages/Home/Home'
+import DashboardPage from './pages/Dashboard/Dashboard'
 
 function App() {
 
