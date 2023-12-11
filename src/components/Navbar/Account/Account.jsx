@@ -3,10 +3,18 @@ import { Link } from "react-router-dom";
 function Account(props) {
     return (
         <div>
-            <Link className="nav_links" to="/">
-                {props.user?.username || "Se connecter"}
-                <i class="fa-regular fa-user"></i>
-            </Link>
+            {props.user ? 
+                <Link className="nav_links" to="/dashboard">
+                <span>{props.user.username}</span>
+                <i className="fa-regular fa-user"></i>
+                </Link>
+                :
+                <Link className="nav_links" to="/login">
+                <span>Se connecter</span>
+                <i className="fa-solid fa-arrow-right"></i>
+                </Link>
+            }
+
            
         </div>
       )
