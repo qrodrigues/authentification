@@ -1,10 +1,18 @@
-function App() {
+import './Home.scss'
+import TopBlogList from '../../components/TopBlogList/TopBlogList'
+
+function Home() {
 
   return (
     <>
-      <h1>Home</h1>
+    <div className="home_ctn">
+      <div className="home_blog">
+        <h1>Regardez les derniers blogs ...</h1>
+      </div>
+      <TopBlogList/>
+    </div>
     </>
   )
 }
 
-export default App
+export default Home

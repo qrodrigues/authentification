@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import './Navbar.css'
+import './Navbar.scss'
 import Account from "./Account/Account";
 
 function Navbar() {
