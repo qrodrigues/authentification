@@ -7,7 +7,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
 import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/Home/Home'
-import DashboardPage from './pages/Dashboard/Dashboard'
+import DashboardPage from './pages/ShowBlog/ShowBlog'
 
 function App() {
 const blog = {

@@ -25,15 +25,12 @@ p{
 
 .user-area{
     display: flex;
-    align-content: space-between;
+    justify-content: space-between;
 }
 
-.user-area.h3{
-    display: flex;
-}
 .user-action{
     display: flex;
-    align-content: center;
+    align-items: center;
 }
 
 .create-btn{
@@ -52,13 +49,26 @@ p{
 }
 
 .article{
-    z-index: 0;
     padding: 1em;
     display: flex;
+    margin: 10px;
+    border: 1.323px solid #948E8E;
+    border-radius: 5px;
 }
 
 .article-action{
-    z-index: 1;
-    // display: flex;
-    // align-content: center;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+    font-size: 24px;
+    cursor: pointer;
+    height: fit-content;
+    width: 30px;
+}
+
+.article-action:hover{
+    background-color: white;
+    color: #242424;
 }

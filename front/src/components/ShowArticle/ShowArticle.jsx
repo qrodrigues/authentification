@@ -1,4 +1,4 @@
-function ShowBlog(props) {
+function ShowArticle(props) {
 
     return (
         <div className="blog-area">
@@ -8,4 +8,4 @@ function ShowBlog(props) {
         )
     }
 
-export default ShowBlog
+export default ShowArticle
