@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const cors = require('cors')
 
 const qrcode = require('qrcode');
@@ -10,7 +10,7 @@ const { authenticator } = require('otplib');
 const app = express()
 const port = 3000
 
-const { createUser } = require('./src/usersRepository')
+const { createUser, checkPassword } = require('./src/usersRepository')
 
 app.use(cors())
 
@@ -18,17 +18,7 @@ app.post('/account/create', bodyParser.json(), async (req, res) => {
   // Vérification des variables
   const body = req.body
   if (body.username && body.mail && body.password) {
-    const hashedPassword = await new Promise((resolve, reject) => {
-      bcrypt.hash(body.password, 10, function (err, hash) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(hash);
-        }
-      });
-    });
-
-    const createdUser = await createUser(body.username, body.mail, hashedPassword)
+    const createdUser = await createUser(body.username, body.mail, body.password)
     if (createdUser) {
       res.status(200).send(`Utilisateur ${createdUser} créé.`)
     } else {
@@ -36,6 +26,20 @@ app.post('/account/create', bodyParser.json(), async (req, res) => {
     }
   } else {
     res.status(400).send("Les informations d'inscription ne sont pas complètes.")
+  }
+})
+
+app.post('/account/login', bodyParser.json(), async (req, res) => {
+  // Vérification des variables
+  const body = req.body
+  if (body.username && body.password) {
+    const idUser = await checkPassword(body.username, body.password)
+    if (idUser) {
+      jwt_token = {"token": jwt.sign({ _id: idUser }, 'monsecretbiengarde')}
+      res.status(200).send(jwt_token)
+    } else {
+      res.status(401).send('mauvais credential')
+    }
   }
 })
 

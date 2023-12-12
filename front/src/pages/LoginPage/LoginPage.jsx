@@ -1,19 +1,51 @@
 import './LoginPage.scss'
 import { Link } from "react-router-dom";
+import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 function App() {
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!inputs.password || !inputs.username) {
+      alert('Tous les champs sont obligatoires');
+    } else {
+      try {
+        await axios.post('http://localhost:3000/account/login', {
+          username: inputs.username,
+          password: inputs.password
+        }).then((response) => {
+          if (response.data.token) {
+            localStorage.setItem("loggedInUser", response.data.token);
+          }
+          navigate('/');
+        })
+      } catch {
+        alert('Une erreur est survenue lors de la connexion.');
+      }
+    }
+  }
 
   return (
     <>
-      <div class="login-page">
-        <div class="container">
-          <form>
+      <div className="login-page">
+        <div className="container">
+          <form onSubmit={handleSubmit}>
             <h1>Formulaire de connexion</h1>
-            <input type="text" placeholder="Nom d'utilisateur" />
-            <input type="password" placeholder="Mot de passe" />
-            <a class="button" href="#">Se connecter</a>
-            <p><input class="check" type="checkbox" />Se souvenir de moi<a class="forget" href="#">Mot de passe oublié ?</a></p>
-            <h5>Pas de compte ?<Link to="/register"><a> Créer un compte</a></Link></h5>
+            <input name="username" type="text" value={inputs.username || ""} onChange={handleChange} placeholder="Nom d'utilisateur" />
+            <input name="password" type="password" value={inputs.password || ""} onChange={handleChange} placeholder="Mot de passe" />
+            <input type="submit" className="button" value="Se connecter" />
+            <p><input className="check" type="checkbox" />Se souvenir de moi<a className="forget" href="#">Mot de passe oublié ?</a></p>
+            <h5>Pas de compte ?<Link to="/register"> Créer un compte</Link></h5>
           </form>
         </div>
       </div>

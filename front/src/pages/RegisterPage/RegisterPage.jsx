@@ -29,8 +29,7 @@ function App() {
         }).then(() => {
           navigate('/login');
         })
-      } catch (error) {
-        console.error('Erreur lors de la requête:', error);
+      } catch {
         alert('Une erreur est survenue lors de l\'inscription');
       }
     }
@@ -41,7 +40,7 @@ function App() {
       <div className="register-page">
         <div className="container">
           <form onSubmit={handleSubmit}>
-            <h1>Formulaire d'inscription</h1>
+            <h1>Formulaire d&apos;inscription</h1>
             <input name="username" type="text" value={inputs.username || ""} onChange={handleChange} placeholder="Nom d'utilisateur" />
             <input name="mail" type="text" value={inputs.mail || ""} onChange={handleChange} placeholder="Adresse email" />
             <input name="password" value={inputs.password || ""} onChange={handleChange} type="password" placeholder="Mot de passe" />
