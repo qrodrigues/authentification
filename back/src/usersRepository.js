@@ -10,7 +10,6 @@ async function createUser(username, mail, password) {
     const user = await users.findOne({ mail })
     if (user === null) {
       const insertUser = await users.insertOne({ username, mail, password });
-      console.log(insertUser);
       return insertUser.insertedId
     } else {
       return null

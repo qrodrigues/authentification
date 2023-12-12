@@ -1,8 +1,11 @@
 import './RegisterPage.scss'
 import { Link } from "react-router-dom";
 import { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 function App() {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -11,9 +14,26 @@ function App() {
     setInputs(values => ({...values, [name]: value}))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    if (inputs.password != inputs.confirmPassword) alert('La confirmation de mot de passe ne correspond pas.')
+    if (!inputs.password || !inputs.confirmPassword || !inputs.username || !inputs.mail) {
+      alert('Tous les champs sont obligatoires');
+    } else if (inputs.password !== inputs.confirmPassword) {
+      alert('La confirmation de mot de passe ne correspond pas.');
+    } else {
+      try {
+        await axios.post('http://localhost:3000/account/create', {
+          username: inputs.username,
+          mail: inputs.mail,
+          password: inputs.password
+        }).then(() => {
+          navigate('/login');
+        })
+      } catch (error) {
+        console.error('Erreur lors de la requête:', error);
+        alert('Une erreur est survenue lors de l\'inscription');
+      }
+    }
   }
 
   return (
