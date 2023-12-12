@@ -2,10 +2,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    // background-color: red;
 }
 
 .home_blog{
     padding: 2rem;
-    // background-color: green;
+    h1{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
 }
