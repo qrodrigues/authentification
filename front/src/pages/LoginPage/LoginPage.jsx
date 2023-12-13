@@ -24,10 +24,10 @@ function App() {
           mail: inputs.mail,
           password: inputs.password
         }).then((response) => {
-          if (response.data.token) {
-            localStorage.setItem("loggedInUser", response.data.token);
+          if (response.data?.token) {
+            document.cookie = `token=${response.data.token}`
+            navigate('/');
           }
-          navigate('/');
         })
       } catch {
         alert('Une erreur est survenue lors de la connexion.');

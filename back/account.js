@@ -7,6 +7,10 @@ const { createUser, checkPassword } = require('./src/usersRepository')
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    res.send(req.cookies.token)
+})
+
 router.post('/create', bodyParser.json(), async (req, res) => {
     // Vérification des variables
     const body = req.body
@@ -29,10 +33,12 @@ router.post('/login', bodyParser.json(), async (req, res) => {
         const user = await checkPassword(body.mail, body.password)
         if (user) {
             jwt_token = jwt.sign({ _id: user._id, username: user.username }, 'monsecretbiengarde')
-            res.status(200).cookie('token', jwt_token).send(jwt_token)
+            res.status(200).send({token: jwt_token})
         } else {
             res.status(401).send('Les identifiants ne sont pas correctes.')
         }
+    } else {
+        res.status(400).send("L'authentification requiert une adresse mail et un mot de passe.")
     }
 })
 
