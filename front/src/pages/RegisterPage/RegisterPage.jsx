@@ -2,7 +2,7 @@ import './RegisterPage.scss'
 import { Link } from "react-router-dom";
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import instanceAxios from '../../helpers/axiosInstance';
 
 function App() {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function App() {
       alert('La confirmation de mot de passe ne correspond pas.');
     } else {
       try {
-        await axios.post('http://localhost:3000/account/create', {
+        await instanceAxios.post('http://localhost:3000/account/create', {
           username: inputs.username,
           mail: inputs.mail,
           password: inputs.password

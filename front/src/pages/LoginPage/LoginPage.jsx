@@ -2,7 +2,7 @@ import './LoginPage.scss'
 import { Link } from "react-router-dom";
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import axios from 'axios'
+import instanceAxios from '../../helpers/axiosInstance';
 
 function App() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function App() {
       alert('Tous les champs sont obligatoires');
     } else {
       try {
-        await axios.post('http://localhost:3000/account/login', {
+        await instanceAxios.post('http://localhost:3000/account/login', {
           mail: inputs.mail,
           password: inputs.password
         }).then((response) => {

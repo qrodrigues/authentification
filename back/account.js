@@ -23,7 +23,7 @@ router.post('/create', bodyParser.json(), async (req, res) => {
 })
 
 router.post('/login', bodyParser.json(), async (req, res) => {
-    // Vérification des variables
+    console.log('ici');
     const body = req.body
     if (body.mail && body.password) {
         const user = await checkPassword(body.mail, body.password)
