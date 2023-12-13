@@ -25,8 +25,8 @@ router.post('/create', bodyParser.json(), async (req, res) => {
 router.post('/login', bodyParser.json(), async (req, res) => {
     // Vérification des variables
     const body = req.body
-    if (body.username && body.password) {
-        const user = await checkPassword(body.username, body.password)
+    if (body.mail && body.password) {
+        const user = await checkPassword(body.mail, body.password)
         if (user) {
             jwt_token = jwt.sign({ _id: user._id, username: user.username }, 'monsecretbiengarde')
             res.status(200).cookie('token', jwt_token).send(jwt_token)

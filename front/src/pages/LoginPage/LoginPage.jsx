@@ -16,12 +16,12 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!inputs.password || !inputs.username) {
+    if (!inputs.password || !inputs.mail) {
       alert('Tous les champs sont obligatoires');
     } else {
       try {
         await axios.post('http://localhost:3000/account/login', {
-          username: inputs.username,
+          mail: inputs.mail,
           password: inputs.password
         }).then((response) => {
           if (response.data.token) {
@@ -41,7 +41,7 @@ function App() {
         <div className="container">
           <form onSubmit={handleSubmit}>
             <h1>Formulaire de connexion</h1>
-            <input name="username" type="text" value={inputs.username || ""} onChange={handleChange} placeholder="Nom d'utilisateur" />
+            <input name="mail" type="text" value={inputs.mail || ""} onChange={handleChange} placeholder="Adresse email" />
             <input name="password" type="password" value={inputs.password || ""} onChange={handleChange} placeholder="Mot de passe" />
             <input type="submit" className="button" value="Se connecter" />
             <p><input className="check" type="checkbox" />Se souvenir de moi<a className="forget" href="#">Mot de passe oublié ?</a></p>

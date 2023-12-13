@@ -18,7 +18,7 @@ async function createUser(username, mail, password) {
   try {
     const database = client.db('livecampus-authentication');
     const users = database.collection('users');
-    const user = await users.findOne({ username })
+    const user = await users.findOne({ mail })
     if (user === null) {
       const insertUser = await users.insertOne({ username, mail, password: hashedPassword });
       return insertUser.insertedId
@@ -31,12 +31,12 @@ async function createUser(username, mail, password) {
   }
 }
 
-async function checkPassword(username, password) {
+async function checkPassword(mail, password) {
   const client = new MongoClient(uri);
   try {
     const database = client.db('livecampus-authentication');
     const users = database.collection('users');
-    const user = await users.findOne({ username })
+    const user = await users.findOne({ mail })
     if (user === null) {
       return null
     } else {
