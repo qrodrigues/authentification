@@ -1,14 +1,19 @@
 const express = require('express')
 const cors = require('cors')
-const cookieParser = require('cookie-parser');
 
 const accountRouter = require('./account');
 
 const app = express()
 const port = 3000
 
-app.use(cors())
-app.use(cookieParser())
+// Allow cookies axios
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
+
 app.use('/account', accountRouter);
 
 app.listen(port, () => {

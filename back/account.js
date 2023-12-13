@@ -7,10 +7,6 @@ const { createUser, checkPassword } = require('./src/usersRepository')
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send(req.cookies.token)
-})
-
 router.post('/create', bodyParser.json(), async (req, res) => {
     // Vérification des variables
     const body = req.body
@@ -42,8 +38,11 @@ router.post('/login', bodyParser.json(), async (req, res) => {
     }
 })
 
-router.post('/verify', bodyParser.json(), async (req, res) => {
-        res.status(200).send(`Test session oui`)
+
+router.get('/verify', bodyParser.json(), async (req, res) => {
+    const test = req.cookies
+    console.log(test);
+    res.status(200).send(`Test session oui`)
 })
 
 // A2F
