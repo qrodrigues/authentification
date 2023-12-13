@@ -1,4 +1,7 @@
 const express = require('express')
+const cors = require('cors')
+const cookieParser = require('cookie-parser');
+
 const accountRouter = require('./account');
 
 const app = express()
@@ -13,6 +16,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(cookieParser());
 
 app.use('/account', accountRouter);
 

@@ -41,8 +41,8 @@ router.post('/login', bodyParser.json(), async (req, res) => {
 
 router.get('/verify', bodyParser.json(), async (req, res) => {
     const test = req.cookies
-    console.log(test);
-    res.status(200).send(`Test session oui`)
+        console.log(test);
+        res.status(200).send(`Test session oui`)
 })
 
 // A2F
