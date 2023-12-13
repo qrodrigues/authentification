@@ -36,16 +36,15 @@ async function checkPassword(username, password) {
   try {
     const database = client.db('livecampus-authentication');
     const users = database.collection('users');
-    console.log(username);
     const user = await users.findOne({ username })
-    console.log(user);
     if (user === null) {
       return null
     } else {
-      console.log(password);
-      console.log(user.password);
       const isPasswordValid = await bcrypt.compare(password, user.password);
-      if (isPasswordValid) return user._id
+      if (isPasswordValid) return {
+        _id: user._id,
+        username: user.username
+      }
       return null
     }
   } finally {
