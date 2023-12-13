@@ -1,5 +1,5 @@
-import "../../components/ShowArticle/ShowArticle.jsx";
-import "./Dashboard.scss";
+import ShowArticle from "../../components/ShowArticle/ShowArticle.jsx";
+import "./ShowBlog.scss";
 function ShowBlog(props) {
   return (
     <>
@@ -14,9 +14,9 @@ function ShowBlog(props) {
           </div>
         </div>
         <div className="article-grid">
-          {props.blog.articles.map((article, index) => (
+          {props?.blog?.articles.map((article, index) => (
             <div className="article" key={index}>
-              <ShowBlog article={article} />
+              <ShowArticle article={article} />
               <div className="article-action">
                 <i className="fa-solid fa-ellipsis-vertical"></i>
               </div>
