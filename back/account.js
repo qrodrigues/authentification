@@ -36,9 +36,13 @@ router.post('/login', bodyParser.json(), async (req, res) => {
     }
 })
 
+router.post('/verify', bodyParser.json(), async (req, res) => {
+        res.status(200).send(`Test session oui`)
+})
+
 // A2F
 const authenticatorSecret = 'unsecretvraimenttressecret';
-router.get('/qrcode', (req, res) => {
+router.get('a2f/qrcode', (req, res) => {
     // Le nom d'utilisateur de la personne connectée
     const user = 'quentin@test.fr';
     // Le nom de votre service (à vous de le définir)
@@ -62,7 +66,7 @@ router.get('/qrcode', (req, res) => {
     });
 });
 
-router.get('/verify', (req, res) => {
+router.get('a2f/verify', (req, res) => {
     // Le token, ce sont les six chiffres générés aléatoirement toutes les
     // 30 secondes
     const token = req.query.token; // http://localhost:4000/verify?token=123456
