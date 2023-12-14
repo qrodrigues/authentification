@@ -40,9 +40,19 @@ router.post('/login', bodyParser.json(), async (req, res) => {
 
 
 router.get('/verify', bodyParser.json(), async (req, res) => {
-    const test = req.cookies
-        console.log(test);
-        res.status(200).send(`Test session oui`)
+    if(req.cookies.token){
+        jwt_token = jwt.verify(req.cookies.token, 'monsecretbiengarde')
+        if(jwt_token._id){
+            res.status(200).send({user:{
+                _id: jwt_token._id,
+                username: jwt_token.username
+            }})
+        }
+    } else {
+        res.status(200).send()
+    
+    }
+       
 })
 
 // A2F

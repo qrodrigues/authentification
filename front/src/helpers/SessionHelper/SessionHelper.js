@@ -1,10 +1,9 @@
 import instanceAxios from '../axiosInstance';
 
-async function checkSession() {
+async function getConnectedUser() {
     try {
-        const response = await instanceAxios.post('http://localhost:3000/account/login');
-        console.log(response.data)
-        return response.data
+        const response = await instanceAxios.get('http://localhost:3000/account/verify');
+        return response.data.user;
 
     } catch (error) {
         console.log(error)
@@ -12,4 +11,4 @@ async function checkSession() {
     }
 }
 
-export default { checkSession }
+export default { getConnectedUser }
