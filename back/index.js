@@ -1,9 +1,8 @@
 const express = require('express')
-const cors = require('cors')
 const cookieParser = require('cookie-parser');
 
 const accountRouter = require('./account');
-
+const blogRouter = require('./blog');
 const app = express()
 const port = 3000
 
@@ -17,9 +16,8 @@ app.use(function (req, res, next) {
 });
 
 app.use(cookieParser());
-
 app.use('/account', accountRouter);
-
+app.use('/blog', blogRouter);
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })
