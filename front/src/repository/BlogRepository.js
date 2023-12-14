@@ -27,4 +27,44 @@ async function getBlog(id){
 
 }
 
-export default {getBlogs, getBlog};
+async function updateBlog(id, title, description, status){
+    try {
+        const response = await instanceAxios.put(`http://localhost:3000/blog/${id}`,{
+            title : title,
+            description : description,
+            status : status,
+        });
+        console.log(response);
+        return response.data;
+
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+async function deleteBlog(id){
+    try {
+        const response = await instanceAxios.delete(`http://localhost:3000/blog/${id}`);
+        console.log(response);
+        return response.data;
+
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+async function getBlogByUser(username){
+    try {
+        const response = await instanceAxios.get(`http://localhost:3000/blog/user/${username}`);
+        console.log("blog user : ", response);
+        return response.data;
+
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+export default {getBlogs, getBlog, updateBlog,deleteBlog, getBlogByUser};

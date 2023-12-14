@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
-const { createBlog, getBlogs, updateBlog, deleteBlog, getSingleBlog } = require('./src/blogsRepository')
+const { createBlog, getBlogs, updateBlog, deleteBlog, getSingleBlog, getSingleBlogByUser } = require('./src/blogsRepository')
 
 const router = express.Router();
 router.get('/:blogid', async (req, res) => {
@@ -65,7 +65,6 @@ router.put('/:blogid', bodyParser.json(), async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     const blogId = req.params.id
-    console.log(blogId);
     if(blogId) {
         const deletedBlog = await deleteBlog(blogId)
         if(deletedBlog) {
@@ -75,6 +74,18 @@ router.delete('/:id', async (req, res) => {
         }
     } else {
         res.status(400).send("Les informations du blog ne sont pas complètes.")
+    }
+})
+
+router.get('/user/:username', async (req, res) => {
+    const username = req.params.username;
+    if(username) {
+        const foundBlog = await getSingleBlogByUser(username)
+        if(foundBlog) {
+            res.status(200).send(foundBlog)
+        } else {
+            res.status(400).send(`Erreur lors de l'obtention du blog de l'utilisateur ${username}.`)
+        }
     }
 })
 

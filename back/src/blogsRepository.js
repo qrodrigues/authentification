@@ -101,4 +101,20 @@ async function deleteBlog(blogId) {
   }
 }
 
-module.exports = { getSingleBlog, getBlogs, createBlog, updateBlog, deleteBlog }
+async function getSingleBlogByUser(username){
+  const client = new MongoClient(uri);
+  try {
+    const database = client.db('livecampus-authentication');
+    const blogs = database.collection('blogs');
+    const blog = await blogs.findOne({ author: username });
+    if (blog == null) {
+      return null;
+    } else {
+      return blog;
+    }
+  } finally {
+    await client.close();
+  }
+}
+
+module.exports = { getSingleBlog, getBlogs, createBlog, updateBlog, deleteBlog, getSingleBlogByUser}
