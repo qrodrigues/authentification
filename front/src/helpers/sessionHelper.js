@@ -1,4 +1,4 @@
-import instanceAxios from '../axiosInstance';
+import instanceAxios from './axiosInstance';
 
 async function getConnectedUser() {
     try {

@@ -1,0 +1,92 @@
+const express = require('express');
+const bodyParser = require('body-parser')
+const { createBlog, getBlogs, updateBlog, deleteBlog, getSingleBlog, getSingleBlogByUser } = require('./src/blogsRepository')
+
+const router = express.Router();
+router.get('/:blogid', async (req, res) => {
+
+    const blogId = req.params.blogid;
+    console.log(blogId);
+    if(blogId) {
+        const foundBlog = await getSingleBlog(blogId)
+        console.log(foundBlog)
+        if(foundBlog) {
+            res.status(200).send(foundBlog)
+        } else {
+            res.status(400).send(`Erreur lors de l'obtention du blog ${blogId}.`)
+        }
+    } else {
+        res.status(400).send(`Erreur lors de l'obtention du blog.`)
+    }
+})
+
+router.get('/', async (req, res) => {
+    const foundBlogs = await getBlogs()
+    if(foundBlogs) {
+        res.status(200).send(foundBlogs)
+    } else {
+        res.status(400).send(`Erreur lors de l'obtention des blogs.`)
+    }
+})
+
+router.post('/', bodyParser.json(), async (req, res) => {
+    // Vérification des variables
+    const body = req.body
+    if (body.title && body.author) {
+        const createdBlog = await createBlog(body.title, body.description, body.link, body.articles, body.author, body.status)
+        if (createdBlog) {
+            res.status(200).send(`Blog ${createdBlog} créé.`)
+        } else {
+            res.status(400).send('Erreur lors de la création du blog.')
+        }
+    } else {
+        res.status(400).send("Les informations du blog ne sont pas complètes.")
+    }
+})
+
+router.put('/:blogid', bodyParser.json(), async (req, res) => {
+
+    const blogId = req.params.blogid
+    console.log(blogId)
+    console.log(req.body)
+    if(blogId && req.body) {
+        const updatedBlog = await updateBlog(blogId, req.body)
+        console.log(updatedBlog)
+        if(updatedBlog) {
+            res.status(200).send(`Blog ${updatedBlog} modifié.`)
+        } else {
+            res.status(400).send(`Erreur lors de la modification du blog.`)
+        }
+    } else {
+        res.status(400).send("Les informations du blog ne sont pas complètes.")
+    }
+})
+
+
+router.delete('/:id', async (req, res) => {
+    const blogId = req.params.id
+    if(blogId) {
+        const deletedBlog = await deleteBlog(blogId)
+        if(deletedBlog) {
+            res.status(200).send(`Blog ${deletedBlog} supprimé.`)
+        } else {
+            res.status(400).send(`Erreur lors de la suppression du blog.`)
+        }
+    } else {
+        res.status(400).send("Les informations du blog ne sont pas complètes.")
+    }
+})
+
+router.get('/user/:username', async (req, res) => {
+    const username = req.params.username;
+    if(username) {
+        const foundBlog = await getSingleBlogByUser(username)
+        if(foundBlog) {
+            res.status(200).send(foundBlog)
+        } else {
+            res.status(400).send(`Erreur lors de l'obtention du blog de l'utilisateur ${username}.`)
+        }
+    }
+})
+
+module.exports = router;

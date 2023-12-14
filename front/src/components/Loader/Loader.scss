@@ -1,0 +1,13 @@
+.loader{
+    animation: rotate 2s ease-in-out infinite;
+}
+
+
+@keyframes rotate {
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}

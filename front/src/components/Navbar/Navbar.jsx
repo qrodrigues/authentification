@@ -10,14 +10,13 @@ function Navbar() {
     //     lastname:"Anthony",
     //     email : "XXXXXXXXXXXXXXX"
     // }
-    const user = null
 
     return (
         <div className="navbar">
             <Link to="/">
                 <img className="logo" src="logo.png" alt="" />
             </Link>
-           <Account user={user} />
+           <Account />
         </div>
       )
 }

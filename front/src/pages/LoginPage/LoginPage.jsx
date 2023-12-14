@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import instanceAxios from '../../helpers/axiosInstance';
+import SessionHelper from '../../helpers/SessionHelper';
+import { useUser } from '../../providers/UserContext';
 
 function App() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
+  const { setUser } = useUser();
 
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
+    setInputs(values => ({ ...values, [name]: value }))
   }
 
   const handleSubmit = async (event) => {
@@ -23,9 +26,12 @@ function App() {
         await instanceAxios.post('http://localhost:3000/auth/login', {
           mail: inputs.mail,
           password: inputs.password
-        }).then((response) => {
+        }).then(async (response) => {
           if (response.data?.redirectTo) {
             navigate(response.data.redirectTo);
+            const resp_user = await SessionHelper.getConnectedUser()
+            setUser(resp_user)
+            navigate('/')
           }
         })
       } catch {

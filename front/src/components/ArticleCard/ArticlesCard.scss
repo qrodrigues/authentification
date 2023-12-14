@@ -1,0 +1,28 @@
+
+.article_card{
+    padding: 1em;
+    display: flex;
+    margin: 10px;
+    border: 1.323px solid #948E8E;
+    border-radius: 5px;
+    &:hover{
+        background-color: #343434bd;
+    }
+}
+
+.article-actions{
+    i{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0.3rem;
+        padding: 0.5rem;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover{
+            background-color: white;
+            color: #242424;
+        }
+    }
+}
