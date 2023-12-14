@@ -1,6 +1,15 @@
 import ArticleCard from "../../components/ArticleCard/ArticleCard.jsx";
 import "./ShowBlog.scss";
+// import { useEffect, useState } from "react";
+// import BlogRepository from "../../repository/BlogRepository.js";
+
 function ShowBlog(props) {
+// const [blog, setBlog] = useState(null)
+
+// useEffect(() => {
+  
+// }
+// , [props.blog])
   return (
     <>
       <div className="container">

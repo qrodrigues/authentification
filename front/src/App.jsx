@@ -65,7 +65,7 @@ useEffect(() =>  {
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/dashboard" element={<DashboardPage blog={blog} />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
     </>
   )

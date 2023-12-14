@@ -11,7 +11,7 @@ router.get('/:blogid', async (req, res) => {
         const foundBlog = await getSingleBlog(blogId)
         console.log(foundBlog)
         if(foundBlog) {
-            res.status(200).send(`${foundBlog}`)
+            res.status(200).send(foundBlog)
         } else {
             res.status(400).send(`Erreur lors de l'obtention du blog ${blogId}.`)
         }
@@ -23,7 +23,7 @@ router.get('/:blogid', async (req, res) => {
 router.get('/', async (req, res) => {
     const foundBlogs = await getBlogs()
     if(foundBlogs) {
-        res.status(200).send(`${foundBlogs}`)
+        res.status(200).send(foundBlogs)
     } else {
         res.status(400).send(`Erreur lors de l'obtention des blogs.`)
     }
