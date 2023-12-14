@@ -9,13 +9,7 @@ import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/Home/Home'
 import DashboardPage from './pages/ShowBlog/ShowBlog'
 
-import SessionHelper from './helpers/SessionHelper/SessionHelper';
-
 function App() {
-  const testUser =  async ()=>{
-      const user = await SessionHelper.getConnectedUser()
-      console.log(user);
-  }
 const blog = {
   "title": "CodeCrafting",
   "description": "Blog de Développement Web",
@@ -39,7 +33,6 @@ const blog = {
   return (
     <>
       <Navbar />
-      <button onClick={testUser}>Test Session</button>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
