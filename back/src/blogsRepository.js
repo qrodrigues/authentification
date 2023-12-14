@@ -57,7 +57,7 @@ async function updateBlog(blogId, updateFields) {
   try {
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
-    const blog = await blogs.findOne({ blogId })
+    const blog = await blogs.findOne({ _id: new ObjectId(blogId) })
     if (blog === null) {
       return null
     } else {
@@ -83,15 +83,17 @@ async function deleteBlog(blogId) {
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
     const existingBlog = await blogs.findOne({ _id: new ObjectId(blogId) });
-    if (existingBlog === null) {
-      return false;
+    console.log("existingBlog :",existingBlog);
+    if (existingBlog == null) {
+      console.log("existe po");
+      return null;
     } else {
       const deleteResult = await blogs.deleteOne({ _id: new ObjectId(blogId) });
-
+      console.log("delete :",deleteResult);
       if (deleteResult.deletedCount > 0) {
-        return true;
+        return blogId;
       } else {
-        return false;
+        return null;
       }
     }
   } finally {

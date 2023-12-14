@@ -44,11 +44,14 @@ router.post('/', bodyParser.json(), async (req, res) => {
     }
 })
 
-router.put('/:id', bodyParser.json(), async (req, res) => {
+router.put('/:blogid', bodyParser.json(), async (req, res) => {
 
-    const body = req.body
-    if(body) {
-        const updatedBlog = await updateBlog(body)
+    const blogId = req.params.blogid
+    console.log(blogId)
+    console.log(req.body)
+    if(blogId && req.body) {
+        const updatedBlog = await updateBlog(blogId, req.body)
+        console.log(updatedBlog)
         if(updatedBlog) {
             res.status(200).send(`Blog ${updatedBlog} modifié.`)
         } else {
@@ -60,11 +63,12 @@ router.put('/:id', bodyParser.json(), async (req, res) => {
 })
 
 
-router.delete('/:id', bodyParser.json(), async (req, res) => {
-    const body = req.body
-    if(body) {
-        const deletedBlog = await deleteBlog(body)
-        if(!deletedBlog) {
+router.delete('/:id', async (req, res) => {
+    const blogId = req.params.id
+    console.log(blogId);
+    if(blogId) {
+        const deletedBlog = await deleteBlog(blogId)
+        if(deletedBlog) {
             res.status(200).send(`Blog ${deletedBlog} supprimé.`)
         } else {
             res.status(400).send(`Erreur lors de la suppression du blog.`)

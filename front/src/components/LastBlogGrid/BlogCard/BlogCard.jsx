@@ -1,11 +1,13 @@
 import './BlogCard.scss'
 import { Link } from "react-router-dom";
+import { useUser } from '../../../providers/UserContext';
+
 
 function BlogCard(props) {
-
+    const { user } = useUser();
     return (
       <>   
-        <Link to={`${props.blog.link}`} className={`blog_card_info ${props.blog.status === 'private' ? 'private' : 'public'}`}>
+        <Link to={`${props.blog.author == user ? props.blog.link : '/login'}`} className={`blog_card_info ${props.blog.status === 'private' ? 'private' : 'public'}`}>
                 <h3>{props.blog.title}</h3>
                 <p>{props.blog.description}</p>
                 <span className="author"><i className="fa-regular fa-user"></i>{props.blog.author}</span>
