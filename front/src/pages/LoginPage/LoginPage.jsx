@@ -20,13 +20,12 @@ function App() {
       alert('Tous les champs sont obligatoires');
     } else {
       try {
-        await instanceAxios.post('http://localhost:3000/account/login', {
+        await instanceAxios.post('http://localhost:3000/auth/login', {
           mail: inputs.mail,
           password: inputs.password
         }).then((response) => {
-          if (response.data?.token) {
-            document.cookie = `token=${response.data.token}`
-            navigate('/');
+          if (response.data?.redirectTo) {
+            navigate(response.data.redirectTo);
           }
         })
       } catch {
@@ -35,12 +34,30 @@ function App() {
     }
   }
 
+  const clickGoogle = () => {
+    window.open("http://localhost:3000/auth/google", "_self")
+  }
+
+  const clickGithub = () => {
+    window.open("http://localhost:3000/auth/github", "_self")
+  }
+
   return (
     <>
       <div className="login-page">
         <div className="container">
           <form onSubmit={handleSubmit}>
             <h1>Formulaire de connexion</h1>
+            <div className="socials">
+              <div className='google' onClick={clickGoogle}>
+                <i className="fa-brands fa-google"></i>
+                <span>Se connecter avec Google</span>
+              </div>
+              <div className='github' onClick={clickGithub}>
+                <i className="fa-brands fa-github"></i>
+                <span>Se connecter avec Github</span>
+              </div>
+            </div>
             <input name="mail" type="text" value={inputs.mail || ""} onChange={handleChange} placeholder="Adresse email" />
             <input name="password" type="password" value={inputs.password || ""} onChange={handleChange} placeholder="Mot de passe" />
             <input type="submit" className="button" value="Se connecter" />

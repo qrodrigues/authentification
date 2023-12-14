@@ -24,7 +24,7 @@
     }
 
     h1 {
-        margin-bottom: 20px;
+        margin-bottom: 0 !important;
     }
 
     h1,
@@ -68,6 +68,46 @@
         .card {
             width: 100%;
             max-width: 300px;
+        }
+    }
+
+    .socials {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+
+        div {
+            border-radius: 4px;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .google {
+            border: 1px solid rgb(220, 74, 61);
+            color: white;
+            background-color: rgb(220, 74, 61);
+        }
+
+        .google:hover {
+            background-color: white;
+            color: rgb(220, 74, 61);
+        }
+
+        .github {
+            color: white;
+            background-color: #0D1117;
+            border: 1px solid #0D1117;
+        }
+
+        .github:hover {
+            color: #0D1117;
+            background-color: white;
         }
     }
 }

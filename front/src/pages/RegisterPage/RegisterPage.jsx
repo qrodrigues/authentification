@@ -35,12 +35,30 @@ function App() {
     }
   }
 
+  const clickGoogle = () => {
+    window.open("http://localhost:3000/auth/google", "_self")
+  }
+
+  const clickGithub = () => {
+    window.open("http://localhost:3000/auth/github", "_self")
+  }
+
   return (
     <>
       <div className="register-page">
         <div className="container">
           <form onSubmit={handleSubmit}>
             <h1>Formulaire d&apos;inscription</h1>
+            <div className="socials">
+              <div className='google' onClick={clickGoogle}>
+                <i className="fa-brands fa-google"></i>
+                <span>S&apos;inscrire avec Google</span>
+              </div>
+              <div className='github' onClick={clickGithub}>
+                <i className="fa-brands fa-github"></i>
+                <span>S&apos;inscrire avec Github</span>
+              </div>
+            </div>
             <input name="username" type="text" value={inputs.username || ""} onChange={handleChange} placeholder="Nom d'utilisateur" />
             <input name="mail" type="text" value={inputs.mail || ""} onChange={handleChange} placeholder="Adresse email" />
             <input name="password" value={inputs.password || ""} onChange={handleChange} type="password" placeholder="Mot de passe" />
