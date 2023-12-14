@@ -1,4 +1,6 @@
 import './App.css'
+// import SessionHelper from './helpers/SessionHelper/SessionHelper';
+// import { useEffect } from 'react';
 import {
   Routes,
   Route,
@@ -8,6 +10,10 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/Home/Home'
 import DashboardPage from './pages/ShowBlog/ShowBlog'
+
+import { useEffect } from "react";
+import { useUser } from './providers/UserContext';
+import SessionHelper from './helpers/SessionHelper/SessionHelper';
 
 function App() {
 const blog = {
@@ -30,16 +36,39 @@ const blog = {
   "status": "public"
 }
 
+const {setUser} = useUser();   
+
+useEffect(() =>  {
+    const fetchUser = async () => {
+        try {
+            const resp_user = await SessionHelper.getConnectedUser();
+            console.log(resp_user);
+            return resp_user
+        } catch (error) {
+            console.log(error);
+            return null
+        }
+    }
+
+    const setUserData = async () => {
+        const userData = await fetchUser();
+        setUser(userData);
+    };
+
+    setUserData()
+},[]);
+
+
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<DashboardPage blog={blog} />} />
-      </Routes>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dashboard" element={<DashboardPage blog={blog} />} />
+        </Routes>
     </>
   )
 }
