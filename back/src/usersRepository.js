@@ -53,4 +53,22 @@ async function checkPassword(mail, password) {
   }
 }
 
-module.exports = { createUser, checkPassword }
+async function createProviderUser(username, providerId, provider) {
+  const client = new MongoClient(uri);
+  try {
+    const database = client.db('livecampus-authentication');
+    const users = database.collection('users');
+    const user = await users.findOne({ provider, providerId })
+    if (user === null) {
+      const insertUser = await users.insertOne({ username, provider, providerId });
+      return insertUser.insertedId
+    } else {
+      return null
+    }
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+
+module.exports = { createUser, checkPassword, createProviderUser }

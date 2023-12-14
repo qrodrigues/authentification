@@ -1,8 +1,10 @@
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser');
+const cookieSession = require('cookie-session')
 
 const accountRouter = require('./account');
+const externalAutenticationRouter = require('./externalAuthentication')
 
 const app = express()
 const port = 3000
@@ -18,7 +20,15 @@ app.use(function (req, res, next) {
 
 app.use(cookieParser());
 
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['maclédecookiesecret'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  })
+)
 app.use('/account', accountRouter);
+app.use('/auth', externalAutenticationRouter);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
