@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import instanceAxios from '../../helpers/axiosInstance';
-import SessionHelper from '../../helpers/SessionHelper/SessionHelper';
+import SessionHelper from '../../helpers/SessionHelper';
 import { useUser } from '../../providers/UserContext';
 
 function App() {

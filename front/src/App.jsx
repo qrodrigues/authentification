@@ -1,6 +1,4 @@
 import './App.css'
-// import SessionHelper from './helpers/SessionHelper/SessionHelper';
-// import { useEffect } from 'react';
 import {
   Routes,
   Route,
@@ -13,7 +11,7 @@ import DashboardPage from './pages/ShowBlog/ShowBlog'
 
 import { useEffect } from "react";
 import { useUser } from './providers/UserContext';
-import SessionHelper from './helpers/SessionHelper/SessionHelper';
+import SessionHelper from './helpers/SessionHelper';
 
 function App() {
 const blog = {

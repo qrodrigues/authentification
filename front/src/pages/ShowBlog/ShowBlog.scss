@@ -47,28 +47,3 @@ p{
     border: 1.323px solid black;
     margin: 0.8rem;
 }
-
-.article{
-    padding: 1em;
-    display: flex;
-    margin: 10px;
-    border: 1.323px solid #948E8E;
-    border-radius: 5px;
-}
-
-.article-action{
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    border-radius: 5px;
-    transition: 0.3s;
-    font-size: 24px;
-    cursor: pointer;
-    height: fit-content;
-    width: 30px;
-}
-
-.article-action:hover{
-    background-color: white;
-    color: #242424;
-}

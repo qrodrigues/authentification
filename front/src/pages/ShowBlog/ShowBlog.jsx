@@ -1,4 +1,4 @@
-import ShowArticle from "../../components/ShowArticle/ShowArticle.jsx";
+import ArticleCard from "../../components/ArticleCard/ArticleCard.jsx";
 import "./ShowBlog.scss";
 function ShowBlog(props) {
   return (
@@ -15,14 +15,7 @@ function ShowBlog(props) {
         </div>
         <div className="article-grid">
           {props?.blog?.articles.map((article, index) => (
-            <div className="article" key={index}>
-              <ShowArticle article={article} />
-              <div className="article-action">
-                <i className="fa-solid fa-ellipsis-vertical"></i>
-              </div>
-              <i  className="fa-solid fa-trash"></i>
-              <i className="fa-solid fa-pencil"></i>
-            </div>
+              <ArticleCard article={article} key={index}/>
           ))}
         </div>
       </div>
