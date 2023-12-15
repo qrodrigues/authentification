@@ -61,7 +61,7 @@ passport.use(new GithubStrategy({
 ));
 
 passport.use('local', new LocalStrategy({
-  usernameField: 'mail',
+  usernameField: 'mail'
 },
   async function(mail, password, done) {
     const user = await checkPassword(mail, password);

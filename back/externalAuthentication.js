@@ -15,7 +15,6 @@ router.get('/login/failed', (req, res) => {
 })
 
 router.get('/login/success', (req, res) => {
-    console.log('ici');
     if (req.user) {
         res.status(200).json({
             success: true,
@@ -26,11 +25,6 @@ router.get('/login/success', (req, res) => {
         res.status(400).send()
     }
 })
-
-// router.get('/logout', (req, res) => {
-//     req.logOut();
-//     res.redirect(CLIENT_URL);
-// })
 
 router.get('/google', passport.authenticate('google', {scope: ["profile"], session: false}))
 
@@ -117,13 +111,42 @@ router.post('/login', bodyParser.json(), (req, res, next) => {
                 })
             }
 
-            req.logIn(user, (err) => {
-                if (err) return next(err)
-                res.status(200).json({
-                    redirectTo: '/'
-                })
+            // Créer le cookie de session
+            res.cookie('token', generateToken(user))
+            res.status(200).json({
+                redirectTo: '/'
             })
         }
+    )(req, res, next)
+}
+)
+
+router.get('/login/callback', (req, res, next) => {
+    passport.authenticate('local', {
+        successRedirect: CLIENT_URL,
+        failureRedirect: "/login/failed",
+        session: false
+    }, (err, user, next) => {
+        if (err) {
+            return res.status(401).json({
+                timestamp: Date,
+                msg: 'Access denied',
+                code: 401
+            })
+        }
+
+        if (!user) {
+            return res.status(401).json({
+                timestamp: Date,
+                msg: 'Unauthorised user',
+                code: 401
+            })
+        }
+
+        // Créer le cookie de session
+        res.cookie('token', generateToken(user))
+        res.status(200).redirect(CLIENT_URL)
+    }
     )(req, res, next)
 }
 )

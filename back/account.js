@@ -39,12 +39,8 @@ router.post('/login', bodyParser.json(), async (req, res) => {
 
 
 router.get('/verify', bodyParser.json(), async (req, res) => {
-    console.log('Je suis là');
-    console.log('req.cookies', req.cookies);
     if (req.cookies.token) {
-        console.log('cookie :', req.cookies.token);
         const user = jwt.verify(req.cookies.token, 'monsecretbiengarde')
-        console.log(user);
         if (user._id) {
             res.status(200).send({
                 user: {

@@ -26,6 +26,7 @@ app.use(
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   })
 )
+
 app.use('/account', accountRouter);
 app.use('/auth', externalAutenticationRouter);
 app.use('/blog', blogRouter);
