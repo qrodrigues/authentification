@@ -11,6 +11,7 @@ import HomePage from './pages/Home/Home'
 import DashboardPage from './pages/ShowBlog/ShowBlog'
 import SingleBlogPage from './pages/SingleBlogPage/SingleBlogPage'
 import CreateArticlePage from './pages/CreateArticlePage/CreateArticlePage'
+import Account from './pages/Account/Account';
 // import UpdateBlogPage from './pages/UpdateBlogPage/UpdateBlogPage'
 // import UpdateArticlePage from './pages/UpdateArticlePage/UpdateArticlePage'
 
@@ -51,6 +52,7 @@ useEffect(() =>  {
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/account" element={<Account />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/blog/:blogid" element={<SingleBlogPage/>} />
           <Route path="/dashboard/new" element={<CreateArticlePage />} />

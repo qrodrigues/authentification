@@ -35,7 +35,7 @@ async function getBlogs() {
     const updated_blogs = await Promise.all(blogList.map(async (blog) => {
       const user = await users.findOne({ _id: new ObjectId(blog.author_id) });
       blog.author_name = user?._id ? user.username : 'Auteur inconnu';
-  
+
       return blog;
     }));
     return updated_blogs

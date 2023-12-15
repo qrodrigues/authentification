@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const bcrypt = require('bcrypt');
 // Replace the uri string with your connection string.
 const uri = "mongodb+srv://quentinrodrigues:nel5QwlsEArsZTMS@cluster0.bjhioln.mongodb.net/";
@@ -112,4 +112,32 @@ async function getUserByProviderId (provider, id) {
   }
 }
 
-module.exports = { createUser, checkPassword, createProviderUser, getUserByProviderId }
+async function getUserById (id) {
+  const client = new MongoClient(uri);
+  try {
+    const database = client.db('livecampus-authentication');
+    const users = database.collection('users');
+    const user = await users.findOne({ _id: new ObjectId(id) })
+    if (user) return user
+    return null
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+
+async function updateUser (id, userData) {
+  const client = new MongoClient(uri);
+  try {
+    const database = client.db('livecampus-authentication');
+    const users = database.collection('users');
+    const user = await users.updateOne({_id: id}, {$set: userData })
+    if (user) return user
+    return null
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+
+module.exports = { createUser, checkPassword, createProviderUser, getUserByProviderId, getUserById, updateUser }

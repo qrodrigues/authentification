@@ -29,6 +29,11 @@ function ShowBlog() {
     <>
       <div className="container">
         <h1>Votre espace personnel, {blog?.author_name}</h1>
+        <div className="container">
+            <h1>Votre profil</h1>
+            <button>A2F</button>
+            <button>Déconnecter toutes les sessions</button>
+        </div>
         <div className="user-area">
           <div className="user-action">
             <Link className="create-btn" to="/dashboard/new">
