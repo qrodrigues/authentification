@@ -116,11 +116,11 @@ async function getSingleBlogByUser(user_id){
     } else {
         const user = await users.findOne({ _id: new ObjectId(blog.author_id) });
         blog.author_name = user?._id ? user.username : 'Auteur inconnu';
+        console.log(blog.author_name);
         return blog;
     }
   } finally {
     await client.close();
   }
 }
-
 module.exports = { getSingleBlog, getBlogs, createBlog, updateBlog, deleteBlog, getSingleBlogByUser}

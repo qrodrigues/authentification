@@ -2,6 +2,7 @@ import './App.css'
 import {
   Routes,
   Route,
+  useParams
 } from "react-router-dom";
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
@@ -9,7 +10,7 @@ import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/Home/Home'
 import DashboardPage from './pages/ShowBlog/ShowBlog'
 import SingleBlogPage from './pages/SingleBlogPage/SingleBlogPage'
-import CreateArticlePage from './pages/CreateArticlePage/CreateArticlePage';
+import CreateArticlePage from './pages/CreateArticlePage/CreateArticlePage'
 // import UpdateBlogPage from './pages/UpdateBlogPage/UpdateBlogPage'
 // import UpdateArticlePage from './pages/UpdateArticlePage/UpdateArticlePage'
 
@@ -42,7 +43,6 @@ useEffect(() =>  {
     setUserData()
 },[]);
 
-
   return (
     <>
         <Navbar />
@@ -52,7 +52,7 @@ useEffect(() =>  {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/blog/:blogid" element={<SingleBlogPage />} />
+          <Route path="/blog/:blogid" element={<SingleBlogPage/>} />
           <Route path="/dashboard/new" element={<CreateArticlePage />} />
           {/* <Route path="/dashboard/update" element={<UpdateBlogPage />} /> */}
           {/* <Route path="/dashboard/update/:articleid" element={<UpdateArticlePage />} /> */}

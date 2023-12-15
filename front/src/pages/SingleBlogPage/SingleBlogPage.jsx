@@ -1,17 +1,27 @@
 import './SingleBlogPage';
 import ShowBlog from '../ShowBlog/ShowBlog';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../../providers/UserContext';
+import { useEffect } from 'react';
+import BlogRepository from '../../repository/BlogRepository';
 
-function SingleBlogPage(props){
+function SingleBlogPage(){
     const navigate = useNavigate();
-    const user = useUser();
-    const isUserAuthor = props?.blog?.author_id  == user;
-    if ( isUserAuthor ) {
-        return <ShowBlog />
-    }else {
-        return (navigate("/dashboard"));
-    }
+    const {user} = useUser();
+    const { blogid } = useParams();
+    useEffect(() => {
+        const fetchBlog = async () => {
+            const blog = await BlogRepository.getBlog(blogid);
+            const isUserAuthor = blog?.author_id  == user?._id
+            if(!isUserAuthor) {
+                return <ShowBlog blog={blog} />;
+            }
+            else {
+                navigate('/dashboard')
+            }
+        }
+        fetchBlog()
+    },[blogid]);
 }
 
 export default SingleBlogPage;
