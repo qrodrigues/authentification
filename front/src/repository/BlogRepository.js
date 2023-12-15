@@ -4,7 +4,6 @@ import instanceAxios from '../helpers/axiosInstance'
 async function getBlogs(){
     try {
         const response = await instanceAxios.get('http://localhost:3000/blog');
-        console.log(response);
         return response.data;
 
     } catch (error) {
@@ -17,7 +16,6 @@ async function getBlogs(){
 async function getBlog(id){
     try {
         const response = await instanceAxios.get(`http://localhost:3000/blog/${id}`);
-        console.log(response);
         return response.data;
 
     } catch (error) {
@@ -34,7 +32,6 @@ async function updateBlog(id, title, description, status){
             description : description,
             status : status,
         });
-        console.log(response);
         return response.data;
 
     } catch (error) {
@@ -46,7 +43,6 @@ async function updateBlog(id, title, description, status){
 async function deleteBlog(id){
     try {
         const response = await instanceAxios.delete(`http://localhost:3000/blog/${id}`);
-        console.log(response);
         return response.data;
 
     } catch (error) {
@@ -55,10 +51,9 @@ async function deleteBlog(id){
     }
 }
 
-async function getBlogByUser(username){
+async function getBlogByUser(user_id){
     try {
-        const response = await instanceAxios.get(`http://localhost:3000/blog/user/${username}`);
-        console.log("blog user : ", response);
+        const response = await instanceAxios.get(`http://localhost:3000/blog/user/${user_id}`);
         return response.data;
 
     } catch (error) {

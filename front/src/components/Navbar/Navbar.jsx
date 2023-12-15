@@ -4,13 +4,6 @@ import Account from "./Account/Account";
 
 function Navbar() {
 
-    // const user = {
-    //     username : "Mosca",
-    //     name:"Rodrigues",
-    //     lastname:"Anthony",
-    //     email : "XXXXXXXXXXXXXXX"
-    // }
-
     return (
         <div className="navbar">
             <Link to="/">

@@ -14,25 +14,6 @@ import { useUser } from './providers/UserContext';
 import SessionHelper from './helpers/SessionHelper';
 
 function App() {
-const blog = {
-  "title": "CodeCrafting",
-  "description": "Blog de Développement Web",
-  "link": "/blogs/codecrafting",
-  "articles": [
-    {
-      "title": "Maîtrisez JavaScript en 30 jours",
-      "content": "Explorez les concepts avancés de JavaScript et devenez un expert en développement web. Des tutoriels pratiques et des astuces utiles vous attendent.",
-      "link": "/blogs/codecrafting/articles/1"
-    },
-    {
-      "title": "Les dernières tendances en CSS",
-      "content": "Restez à jour avec les dernières fonctionnalités CSS. Apprenez à créer des mises en page modernes et réactives pour vos projets web.",
-      "link": "/blogs/codecrafting/articles/2"
-    }
-  ],
-  "author": "Emma Coder",
-  "status": "public"
-}
 
 const {setUser} = useUser();   
 

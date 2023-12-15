@@ -77,14 +77,14 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-router.get('/user/:username', async (req, res) => {
-    const username = req.params.username;
-    if(username) {
-        const foundBlog = await getSingleBlogByUser(username)
+router.get('/user/:id', async (req, res) => {
+    const user_id = req.params.id;
+    if(user_id) {
+        const foundBlog = await getSingleBlogByUser(user_id)
         if(foundBlog) {
             res.status(200).send(foundBlog)
         } else {
-            res.status(400).send(`Erreur lors de l'obtention du blog de l'utilisateur ${username}.`)
+            res.status(400).send(`Erreur lors de l'obtention du blog de l'utilisateur ${user_id}.`)
         }
     }
 })

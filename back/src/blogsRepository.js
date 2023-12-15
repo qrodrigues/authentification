@@ -18,18 +18,28 @@ async function getSingleBlog(blogId) {
 }
 
 async function getBlogs() {
-  const client = new MongoClient(uri);
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
   try {
+    await client.connect();
+
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
+    const users = database.collection('users'); // Assurez-vous que la collection est correcte
+
     const blogList = await blogs.find().toArray();
-    if(blogList) {
-      return blogList;
-    } else {
+
+    if (!blogList || blogList.length === 0) {
       return null;
     }
-  }
-  finally {
+    const updated_blogs = await Promise.all(blogList.map(async (blog) => {
+      const user = await users.findOne({ _id: new ObjectId(blog.author_id) });
+      blog.author_name = user._id ? user.username : 'Auteur inconnu';
+  
+      return blog;
+    }));
+    return updated_blogs
+  } finally {
     await client.close();
   }
 }
@@ -83,13 +93,10 @@ async function deleteBlog(blogId) {
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
     const existingBlog = await blogs.findOne({ _id: new ObjectId(blogId) });
-    console.log("existingBlog :",existingBlog);
     if (existingBlog == null) {
-      console.log("existe po");
       return null;
     } else {
       const deleteResult = await blogs.deleteOne({ _id: new ObjectId(blogId) });
-      console.log("delete :",deleteResult);
       if (deleteResult.deletedCount > 0) {
         return blogId;
       } else {
@@ -101,16 +108,20 @@ async function deleteBlog(blogId) {
   }
 }
 
-async function getSingleBlogByUser(username){
+async function getSingleBlogByUser(user_id){
   const client = new MongoClient(uri);
   try {
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
-    const blog = await blogs.findOne({ author: username });
+    const users = database.collection('users');
+    const blog = await blogs.findOne({ author_id: new ObjectId(user_id) }); 
     if (blog == null) {
       return null;
     } else {
-      return blog;
+        const user = await users.findOne({ _id: new ObjectId(blog.author_id) });
+        blog.author_name = user._id ? user.username : 'Auteur inconnu';
+        console.log(blog.author_name);
+        return blog;
     }
   } finally {
     await client.close();
