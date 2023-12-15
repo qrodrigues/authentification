@@ -2,7 +2,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport')
-const { createProviderUser, checkPassword } = require('./src/usersRepository')
+const { createProviderUser, checkPassword, getUserByProviderId } = require('./src/usersRepository')
 
 const GOOGLE_CLIENT_ID = "1028460363730-g7l7m2567j69iicet3gncdqhs30ni3p1.apps.googleusercontent.com"
 const GOOGLE_CLIENT_SECRET = "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"
@@ -15,15 +15,23 @@ passport.use(new GoogleStrategy({
   clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback"
 },
-function(accessToken, refreshToken, profile, done) {
-  console.log('Le profil est : ', profile);
-  console.log('Le accessToken est : ', accessToken);
-  console.log('Le refreshToken est : ', refreshToken);
-
+async function(accessToken, refreshToken, profile, done) {
   // création user / connexion
-  createProviderUser(profile.displayName, profile.id, 'google')
-
-  done(null, profile)
+  let idUser = await createProviderUser(profile.displayName, profile.id, 'google')
+  if (idUser) {
+    done(null, {
+      _id: idUser,
+      username: profile.displayName
+    })
+  }
+  // L'utilisateur existait déjà
+  else {
+    idUser = await getUserByProviderId('google', profile.id)
+    done(null, {
+      _id: idUser,
+      username: profile.displayName
+    })
+  }
 }
 ));
 
@@ -32,15 +40,23 @@ passport.use(new GithubStrategy({
     clientSecret: GITHUB_CLIENT_SECRET,
     callbackURL: "/auth/github/callback"
   },
-  function(accessToken, refreshToken, profile, done) {
-    console.log('Le profil est : ', profile);
-    console.log('Le accessToken est : ', accessToken);
-    console.log('Le refreshToken est : ', refreshToken);
-
+  async function(accessToken, refreshToken, profile, done) {
     // création user / connexion
-    createProviderUser(profile.displayName, profile.id, 'github')
-
-    done(null, profile)
+    let idUser = await createProviderUser(profile.displayName, profile.id, 'github')
+    if (idUser) {
+      done(null, {
+        _id: idUser,
+        username: profile.displayName
+      })
+    }
+    // L'utilisateur existait déjà
+    else {
+      idUser = await getUserByProviderId('github', profile.id)
+      done(null, {
+        _id: idUser,
+        username: profile.displayName
+      })
+    }
   }
 ));
 

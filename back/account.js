@@ -39,19 +39,26 @@ router.post('/login', bodyParser.json(), async (req, res) => {
 
 
 router.get('/verify', bodyParser.json(), async (req, res) => {
-    if(req.cookies.token){
-        jwt_token = jwt.verify(req.cookies.token, 'monsecretbiengarde')
-        if(jwt_token._id){
-            res.status(200).send({user:{
-                _id: jwt_token._id,
-                username: jwt_token.username
-            }})
+    console.log('Je suis là');
+    console.log('req.cookies', req.cookies);
+    if (req.cookies.token) {
+        console.log('cookie :', req.cookies.token);
+        const user = jwt.verify(req.cookies.token, 'monsecretbiengarde')
+        console.log(user);
+        if (user._id) {
+            res.status(200).send({
+                user: {
+                    _id: user._id,
+                    username: user.username
+                }
+            })
+        } else {
+            res.status(200).send()
         }
     } else {
         res.status(200).send()
-    
     }
-       
+
 })
 
 // A2F
