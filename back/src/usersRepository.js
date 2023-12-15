@@ -57,7 +57,8 @@ async function checkPassword(mail, password) {
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (isPasswordValid) return {
         _id: user._id,
-        username: user.username
+        username: user.username,
+        a2f: user.a2f.active
       }
       return null
     }

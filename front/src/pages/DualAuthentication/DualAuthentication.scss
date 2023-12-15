@@ -1,0 +1,39 @@
+.dualAuthentication {
+    .title {
+        text-align: center;
+    }
+
+    .verification {
+        margin-top: 20px;
+    }
+
+    .qrcode {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .code {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 20px
+    }
+
+    .code .config-btn {
+        all: unset;
+        padding: 10px 20px;
+        border: 2px solid rgb(34, 143, 53);
+        color: white;
+        background-color: rgb(34, 143, 53);
+        border-radius: 5px;
+        cursor: pointer;
+        transition: .3s;
+        margin-top: 50px;
+    }
+
+    .code input {
+        font-size: 20px;
+        padding: 5px;
+    }
+}

@@ -46,7 +46,8 @@ router.get('/verify', bodyParser.json(), async (req, res) => {
             res.status(200).send({
                 user: {
                     _id: user._id,
-                    username: user.username
+                    username: user.username,
+                    a2f: user.a2f
                 }
             })
         } else {
@@ -100,6 +101,12 @@ router.get('/a2f/verify', async (req, res) => {
     } catch (err) {
         res.send(err.message);
     }
+});
+
+router.get('/a2f/disable', async (req, res) => {
+    const user = await getUserById(req.query.user)
+    updateUser(user._id, {a2f: {...user.a2f, active: false}})
+    res.status(200).send('ok')
 });
 
 module.exports = router;
