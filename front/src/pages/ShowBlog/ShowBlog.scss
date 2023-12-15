@@ -9,12 +9,14 @@ p{
         align-items: center;
         gap: 0.5rem;
         font-size: 3rem;
-        margin-bottom: 2rem;
     }
     h3{
         display: flex;
         align-items: center;
         font-size: 1.5rem;
+    }
+    h2 {
+        margin-top: 2rem
     }
 }
 
@@ -46,4 +48,31 @@ p{
     font-weight: bold;
     border: 1.323px solid black;
     margin: 0.8rem;
+}
+
+.button-config {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.button-config .config-btn {
+    all: unset;
+    padding: 10px 20px;
+    border: 2px solid rgb(180, 15, 15);
+    color: rgb(180, 15, 15);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.button-config .disconnect:hover {
+    color: white;
+    background-color: rgb(180, 15, 15);
+}
+
+.button-config .a2f {
+    border: 2px solid rgb(34, 143, 53);
+    color: white;
+    background-color: rgb(34, 143, 53);
 }

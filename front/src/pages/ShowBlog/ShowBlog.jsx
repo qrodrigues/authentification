@@ -6,10 +6,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import BlogRepository from "../../repository/BlogRepository.js";
 import { useUser } from "../../providers/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function ShowBlog() {
   const [blog, setBlog] = useState(null)
   const { user } = useUser();
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -25,15 +28,20 @@ function ShowBlog() {
     fetchBlog()
   }, [user])
 
+  const enableExtraAuth = async () => {
+    navigate('/dashboard/a2f')
+  }
+
   return (
     <>
       <div className="container">
         <h1>Votre espace personnel, {blog?.author_name}</h1>
-        <div className="container">
-            <h1>Votre profil</h1>
-            <button>A2F</button>
-            <button>Déconnecter toutes les sessions</button>
+        <h2>Votre profil</h2>
+        <div className="button-config">
+          <button className="config-btn a2f" onClick={enableExtraAuth}>Activer l&apos;authentification à deux facteurs</button>
+          <button className="config-btn disconnect">Déconnecter toutes les sessions</button>
         </div>
+        <h2>Gérer votre blog</h2>
         <div className="user-area">
           <div className="user-action">
             <Link className="create-btn" to="/dashboard/new">
