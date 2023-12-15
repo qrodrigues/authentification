@@ -28,9 +28,8 @@ function ShowBlog() {
   return (
     <>
       <div className="container">
-        <h1>Votre espace personnel</h1>
+        <h1>Votre espace personnel, {blog?.author_name}</h1>
         <div className="user-area">
-          <h3>{blog?.author_name}</h3>
           <div className="user-action">
             <Link className="create-btn" to="/dashboard/new">
               Créer un article<i className="fa-solid fa-plus"></i>
