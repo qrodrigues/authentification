@@ -25,7 +25,7 @@ async function getBlogs() {
 
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
-    const users = database.collection('users'); // Assurez-vous que la collection est correcte
+    const users = database.collection('users');
 
     const blogList = await blogs.find().toArray();
 
@@ -34,7 +34,7 @@ async function getBlogs() {
     }
     const updated_blogs = await Promise.all(blogList.map(async (blog) => {
       const user = await users.findOne({ _id: new ObjectId(blog.author_id) });
-      blog.author_name = user._id ? user.username : 'Auteur inconnu';
+      blog.author_name = user?._id ? user.username : 'Auteur inconnu';
   
       return blog;
     }));
@@ -44,18 +44,13 @@ async function getBlogs() {
   }
 }
 
-async function createBlog(title, description, link, articles, author, status) {
+async function createBlog(title, description, articles, author_id, status) {
   const client = new MongoClient(uri);
   try {
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
-    const blog = await blogs.findOne({ title })
-    if (blog === null) {
-      const insertBlog = await blogs.insertOne({ title, description, link, articles, author, status });
+      const insertBlog = await blogs.insertOne({ title, description, articles, author_id : new ObjectId(author_id), status });
       return insertBlog.insertedId;
-    } else {
-      return null;
-    }
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
@@ -114,13 +109,13 @@ async function getSingleBlogByUser(user_id){
     const database = client.db('livecampus-authentication');
     const blogs = database.collection('blogs');
     const users = database.collection('users');
-    const blog = await blogs.findOne({ author_id: new ObjectId(user_id) }); 
+    const blog = await blogs.findOne({ author_id: new ObjectId(user_id) });
+    console.log("blog : ",blog); 
     if (blog == null) {
       return null;
     } else {
         const user = await users.findOne({ _id: new ObjectId(blog.author_id) });
-        blog.author_name = user._id ? user.username : 'Auteur inconnu';
-        console.log(blog.author_name);
+        blog.author_name = user?._id ? user.username : 'Auteur inconnu';
         return blog;
     }
   } finally {

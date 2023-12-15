@@ -3,8 +3,9 @@ const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session')
 
 const accountRouter = require('./account');
-const externalAutenticationRouter = require('./externalAuthentication')
 const blogRouter = require('./blog');
+const articleRouter = require('./article')
+const externalAutenticationRouter = require('./externalAuthentication')
 const app = express()
 const port = 3000
 
@@ -30,6 +31,8 @@ app.use(
 app.use('/account', accountRouter);
 app.use('/auth', externalAutenticationRouter);
 app.use('/blog', blogRouter);
+app.use('/article', articleRouter);
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
 })

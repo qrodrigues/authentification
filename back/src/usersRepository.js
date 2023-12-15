@@ -2,6 +2,7 @@ const { MongoClient } = require("mongodb");
 const bcrypt = require('bcrypt');
 // Replace the uri string with your connection string.
 const uri = "mongodb+srv://quentinrodrigues:nel5QwlsEArsZTMS@cluster0.bjhioln.mongodb.net/";
+const {createBlog} = require("./blogsRepository");
 
 async function createUser(username, mail, password) {
   const hashedPassword = await new Promise((resolve, reject) => {
@@ -21,6 +22,19 @@ async function createUser(username, mail, password) {
     const user = await users.findOne({ mail })
     if (user === null) {
       const insertUser = await users.insertOne({ username, mail, password: hashedPassword });
+      const blog_info = {
+        "title": `Blog de ${username}`,
+        "description": `Ceci est le premier blog de ${username} `,
+        "articles": [
+    {
+        "title": "Le premier article",
+        "content": "Vous pouvez modifier le contenu de cet article à tout moment",
+    }
+    ],
+        "author_id": insertUser.insertedId,
+        "status": "private"
+    }
+      const blogForUser = await createBlog(blog_info.title, blog_info.description, blog_info.articles, blog_info.author_id, blog_info.status)
       return insertUser.insertedId
     } else {
       return null
@@ -61,6 +75,19 @@ async function createProviderUser(username, providerId, provider) {
     const user = await users.findOne({ provider, providerId })
     if (user === null) {
       const insertUser = await users.insertOne({ username, provider, providerId });
+      const blog_info = {
+        "title": `Blog de ${username}`,
+        "description": `Ceci est le premier blog de ${username} `,
+        "articles": [
+    {
+        "title": "Le premier article",
+        "content": "Vous pouvez modifier le contenu de cet article à tout moment",
+    }
+    ],
+        "author_id": insertUser.insertedId,
+        "status": "private"
+    }
+      const blogForUser = await createBlog(blog_info.title, blog_info.description, blog_info.articles, blog_info.author_id, blog_info.status)
       return insertUser.insertedId
     } else {
       return null

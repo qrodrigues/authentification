@@ -1,7 +1,7 @@
 import "./ShowBlog.scss";
 import ArticleCard from "../../components/ArticleCard/ArticleCard.jsx";
 import Loader from "../../components/Loader/Loader.jsx";
-
+import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import BlogRepository from "../../repository/BlogRepository.js";
@@ -14,11 +14,13 @@ function ShowBlog() {
   useEffect(() => {
     const fetchBlog = async () => {
       if (user) {
-        const blog = await BlogRepository.getBlogByUser(user._id)
-        console.log(blog);
-        setBlog(blog)
-      }
-
+        try {
+          const blog = await BlogRepository.getBlogByUser(user._id)
+          setBlog(blog)
+        } catch (error) {
+          setBlog(null)
+        }
+      } 
     }
     fetchBlog()
   }, [user])
@@ -30,9 +32,9 @@ function ShowBlog() {
         <div className="user-area">
           <h3>{blog?.author_name}</h3>
           <div className="user-action">
-            <a className="create-btn" href="#">
+            <Link className="create-btn" to="/dashboard/new">
               Créer un article<i className="fa-solid fa-plus"></i>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="article-grid">

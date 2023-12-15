@@ -32,8 +32,8 @@ router.get('/', async (req, res) => {
 router.post('/', bodyParser.json(), async (req, res) => {
     // Vérification des variables
     const body = req.body
-    if (body.title && body.author) {
-        const createdBlog = await createBlog(body.title, body.description, body.link, body.articles, body.author, body.status)
+    if (body.title && body.author_id) {
+        const createdBlog = await createBlog(body.title, body.description, body.link, body.articles, body.author_id, body.status)
         if (createdBlog) {
             res.status(200).send(`Blog ${createdBlog} créé.`)
         } else {
@@ -47,8 +47,6 @@ router.post('/', bodyParser.json(), async (req, res) => {
 router.put('/:blogid', bodyParser.json(), async (req, res) => {
 
     const blogId = req.params.blogid
-    console.log(blogId)
-    console.log(req.body)
     if(blogId && req.body) {
         const updatedBlog = await updateBlog(blogId, req.body)
         console.log(updatedBlog)

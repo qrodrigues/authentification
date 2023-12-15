@@ -13,6 +13,7 @@ router.post('/create', bodyParser.json(), async (req, res) => {
     if (body.username && body.mail && body.password) {
         const createdUser = await createUser(body.username, body.mail, body.password)
         if (createdUser) {
+            
             res.status(200).send(`Utilisateur ${createdUser} créé.`)
         } else {
             res.status(400).send('Erreur lors de la création du compte')
