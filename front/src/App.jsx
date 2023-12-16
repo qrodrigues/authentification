@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
+import LoginPageDualAuth from './pages/LoginPageDualAuth/LoginPageDualAuth'
 import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/Home/Home'
 import DashboardPage from './pages/ShowBlog/ShowBlog'
@@ -51,6 +52,7 @@ useEffect(() =>  {
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/login/a2f/:user" element={<LoginPageDualAuth />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/a2f" element={<DualAuthentication />} />
           <Route path="/blog/:blogid" element={<SingleBlogPage/>} />

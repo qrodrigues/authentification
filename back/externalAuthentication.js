@@ -111,11 +111,20 @@ router.post('/login', bodyParser.json(), (req, res, next) => {
                 })
             }
 
-            // Créer le cookie de session
-            res.cookie('token', generateToken(user))
-            res.status(200).json({
-                redirectTo: '/'
-            })
+            // L'utilisateur n'a pas l'A2F
+            console.log('user:', user);
+            if (!user.a2f) {
+                res.cookie('token', generateToken(user))
+                res.status(200).json({
+                    redirectTo: '/'
+                })
+            } else {
+                // L'utilisateur a l'A2F
+                res.status(200).json({
+                    redirectTo: `/login/a2f/${user._id}`
+                })
+            }
+
         }
     )(req, res, next)
 }

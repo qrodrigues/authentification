@@ -28,10 +28,9 @@ function App() {
           password: inputs.password
         }).then(async (response) => {
           if (response.data?.redirectTo) {
-            navigate(response.data.redirectTo);
             const resp_user = await SessionHelper.getConnectedUser()
             setUser(resp_user)
-            navigate('/')
+            navigate(response.data.redirectTo);
           }
         })
       } catch {

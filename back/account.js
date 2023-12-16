@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const qrcode = require('qrcode');
 const { authenticator } = require('otplib');
 const { createUser, checkPassword, getUserById, updateUser } = require('./src/usersRepository')
+const { generateToken } = require('./src/bcryptRepository')
 
 const router = express.Router();
 
@@ -37,6 +38,31 @@ router.post('/login', bodyParser.json(), async (req, res) => {
         res.status(400).send("L'authentification requiert une adresse mail et un mot de passe.")
     }
 })
+
+router.get('/login/verify', async (req, res) => {
+    console.log(req.query);
+    const token = req.query.token;
+    const user = await getUserById(req.query.user)
+    try {
+        if (!token) {
+            throw new Error("Please supply a token");
+        }
+        // Si le token n'est pas valide, c'est non
+        const isValid = authenticator.check(token, user.a2f.secret);
+        if (!isValid) {
+            res.status(200).json({
+                isValid: false
+            })
+        } else {
+            res.cookie('token', generateToken(user))
+            res.status(200).json({
+                isValid: true
+            })
+        }
+    } catch (err) {
+        res.send(err.message);
+    }
+});
 
 
 router.get('/verify', bodyParser.json(), async (req, res) => {
