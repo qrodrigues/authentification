@@ -9,11 +9,13 @@ function SingleBlogPage(){
     const navigate = useNavigate();
     const {user} = useUser();
     const { blogid } = useParams();
+    console.log(blogid);
     useEffect(() => {
         const fetchBlog = async () => {
             const blog = await BlogRepository.getBlog(blogid);
             const isUserAuthor = blog?.author_id  == user?._id
-            if(!isUserAuthor) {
+            console.log(isUserAuthor);
+            if(isUserAuthor) {
                 return <ShowBlog blog={blog} />;
             }
             else {
