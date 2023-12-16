@@ -1,5 +1,5 @@
 import './Home.scss'
-import TopArticlesList from '../../components/TopArticlesList/TopArticlesList'
+import TopArticlesList from '../../components/LastArticlesList/LastArticlesList'
 import LastBlogGrid from '../../components/LastBlogGrid/LastBlogGrid'
 function Home() {
 

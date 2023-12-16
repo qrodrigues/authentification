@@ -18,7 +18,12 @@
         border: none;
     }
 
-    input:focus {
+    textarea {
+        padding: 15px;
+        border: none;
+    }
+
+    textarea:focus {
         outline: none;
         border-color: #3498db;
     }

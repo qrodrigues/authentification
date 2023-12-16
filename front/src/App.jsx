@@ -2,7 +2,6 @@ import './App.css'
 import {
   Routes,
   Route,
-  useParams
 } from "react-router-dom";
 import RegisterPage from './pages/RegisterPage/RegisterPage'
 import LoginPage from './pages/LoginPage/LoginPage'
@@ -10,7 +9,7 @@ import Navbar from './components/Navbar/Navbar'
 import HomePage from './pages/Home/Home'
 import DashboardPage from './pages/ShowBlog/ShowBlog'
 import SingleBlogPage from './pages/SingleBlogPage/SingleBlogPage'
-import CreateArticlePage from './pages/CreateArticlePage/CreateArticlePage'
+import FormArticlePage from './pages/Article/FormArticlePage/FormArticlePage'
 import DualAuthentication from './pages/DualAuthentication/DualAuthentication'
 // import UpdateBlogPage from './pages/UpdateBlogPage/UpdateBlogPage'
 // import UpdateArticlePage from './pages/UpdateArticlePage/UpdateArticlePage'
@@ -55,9 +54,9 @@ useEffect(() =>  {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/a2f" element={<DualAuthentication />} />
           <Route path="/blog/:blogid" element={<SingleBlogPage/>} />
-          <Route path="/dashboard/new" element={<CreateArticlePage />} />
+          <Route path="/dashboard/new" element={<FormArticlePage />} />
           {/* <Route path="/dashboard/update" element={<UpdateBlogPage />} /> */}
-          {/* <Route path="/dashboard/update/:articleid" element={<UpdateArticlePage />} /> */}
+          <Route path="/dashboard/update/:articleid" element={<FormArticlePage />} />
         </Routes>
     </>
   )

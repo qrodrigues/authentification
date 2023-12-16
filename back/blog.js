@@ -1,31 +1,32 @@
 const express = require('express');
 const bodyParser = require('body-parser')
-const { createBlog, getBlogs, updateBlog, deleteBlog, getSingleBlog, getSingleBlogByUser } = require('./src/blogsRepository')
+const { createBlog, getBlogs, updateBlog, deleteBlog, getOneBlog, getSingleBlogByUser } = require('./src/blogsRepository')
 
 const router = express.Router();
+
+// get blogs
+router.get('/', async (req, res) => {
+    const readBlogs = await getBlogs()
+    if(readBlogs) {
+        res.status(200).send(readBlogs)
+    } else {
+        res.status(400).send(`Erreur lors de l'obtention des blogs.`)
+    }
+})
+
+// get blog by ID
 router.get('/:blogid', async (req, res) => {
 
     const blogId = req.params.blogid;
-    console.log(blogId);
     if(blogId) {
-        const foundBlog = await getSingleBlog(blogId)
-        console.log(foundBlog)
-        if(foundBlog) {
-            res.status(200).send(foundBlog)
+        const readBlog = await getOneBlog(blogId)
+        if(readBlog) {
+            res.status(200).send(readBlog)
         } else {
             res.status(400).send(`Erreur lors de l'obtention du blog ${blogId}.`)
         }
     } else {
         res.status(400).send(`Erreur lors de l'obtention du blog.`)
-    }
-})
-
-router.get('/', async (req, res) => {
-    const foundBlogs = await getBlogs()
-    if(foundBlogs) {
-        res.status(200).send(foundBlogs)
-    } else {
-        res.status(400).send(`Erreur lors de l'obtention des blogs.`)
     }
 })
 
@@ -44,8 +45,8 @@ router.post('/', bodyParser.json(), async (req, res) => {
     }
 })
 
+// update a blog
 router.put('/:blogid', bodyParser.json(), async (req, res) => {
-
     const blogId = req.params.blogid
     if(blogId && req.body) {
         const updatedBlog = await updateBlog(blogId, req.body)
@@ -60,7 +61,7 @@ router.put('/:blogid', bodyParser.json(), async (req, res) => {
     }
 })
 
-
+// delete a blog
 router.delete('/:id', async (req, res) => {
     const blogId = req.params.id
     if(blogId) {
@@ -75,6 +76,7 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// get a blog for a user
 router.get('/user/:id', async (req, res) => {
     const user_id = req.params.id;
     if(user_id) {

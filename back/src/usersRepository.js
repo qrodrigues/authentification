@@ -22,19 +22,7 @@ async function createUser(username, mail, password) {
     const user = await users.findOne({ mail })
     if (user === null) {
       const insertUser = await users.insertOne({ username, mail, password: hashedPassword });
-      const blog_info = {
-        "title": `Blog de ${username}`,
-        "description": `Ceci est le premier blog de ${username} `,
-        "articles": [
-    {
-        "title": "Le premier article",
-        "content": "Vous pouvez modifier le contenu de cet article à tout moment",
-    }
-    ],
-        "author_id": insertUser.insertedId,
-        "status": "private"
-    }
-      const blogForUser = await createBlog(blog_info.title, blog_info.description, blog_info.articles, blog_info.author_id, blog_info.status)
+      const blogForUser = await createBlog(blog_info.title, blog_info.description, blog_info.author_id, blog_info.status)
       return insertUser.insertedId
     } else {
       return null
@@ -112,6 +100,8 @@ async function getUserByProviderId (provider, id) {
     await client.close();
   }
 }
+
+
 
 async function getUserById (id) {
   const client = new MongoClient(uri);
