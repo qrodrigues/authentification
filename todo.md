@@ -1,5 +1,5 @@
 Obligatoire :  
-- [] Readme (à finir, surtout sur  la partie technique)
+- [ ] Readme (à finir, surtout sur  la partie technique)
 - [ ] Gérer mieux le code secret de l'A2F
 - [ ] Sécuriser toutes les routes du back en vérifiant le token (middleware)
 - [ ] Autoriser la création et gestion de son blog uniquement si A2F
