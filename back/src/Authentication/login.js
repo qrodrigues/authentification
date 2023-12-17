@@ -4,14 +4,13 @@ require('./passport')
 const bodyParser = require('body-parser');
 const router = express.Router();
 const { generateToken } = require('../Repository/bcryptRepository')
-
-const CLIENT_URL = "http://localhost:5173/"
+require('dotenv').config();
 
 // Google
 router.get('/google', passport.authenticate('google', {scope: ["profile"], session: false}))
 router.get('/google/callback', (req, res, next) => {
     passport.authenticate('google', {
-        successRedirect: CLIENT_URL,
+        successRedirect: process.env.CLIENT_URL,
         failureRedirect: "/login/failed",
         session: false
     }, (err, user, next) => {
@@ -34,7 +33,7 @@ router.get('/google/callback', (req, res, next) => {
         // L'utilisateur n'a pas l'A2F
         if (!user.a2f) {
             res.cookie('token', generateToken(user))
-            res.status(200).redirect(CLIENT_URL)
+            res.status(200).redirect(process.env.CLIENT_URL)
         } else {
             // L'utilisateur a l'A2F
             res.status(200).redirect(`http://localhost:5173/login/a2f/${user._id}`)
@@ -48,7 +47,7 @@ router.get('/google/callback', (req, res, next) => {
 router.get('/github', passport.authenticate('github', {scope: ["profile"], session: false}))
 router.get('/github/callback', (req, res, next) => {
     passport.authenticate('github', {
-        successRedirect: CLIENT_URL,
+        successRedirect: process.env.CLIENT_URL,
         failureRedirect: "/login/failed",
         session: false
     }, (err, user, next) => {
@@ -71,7 +70,7 @@ router.get('/github/callback', (req, res, next) => {
         // L'utilisateur n'a pas l'A2F
         if (!user.a2f) {
             res.cookie('token', generateToken(user))
-            res.status(200).redirect(CLIENT_URL)
+            res.status(200).redirect(process.env.CLIENT_URL)
         } else {
             // L'utilisateur a l'A2F
             res.status(200).redirect(`http://localhost:5173/login/a2f/${user._id}`)

@@ -16,7 +16,7 @@ Obligatoire :
 - [x] Faire un bouton pour toggle private/public le blog
 - [x] Faire une page de blog sympa au niveau du front
 - [x] Page Error 404
-- Ajouter le postman du projet dans /documentation
+- []Ajouter le postman du projet dans /documentation
 
 Si le temps :
 - [ ] Vérifier que pour aller sur /login/a2f, on s'est d'abord loggé avec les bon identifiants

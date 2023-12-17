@@ -57,7 +57,9 @@ Un utilisateur peut s'inscrire en fournissant les informations requises telles q
 - #### Authentification tierce 
     Pour une connexion simplifiée, les utilisateurs peuvent opter pour l'authentification tierce en utilisant des services de Google et Github.
 ### Mise en place de l'A2F 
-Pour renforcer la sécurité, l'application propose la mise en place de l'authentification à deux facteurs (A2F). Les utilisateurs peuvent activer cette fonctionnalité dans leur espace personnel (bouton en haut à droite), en associant leur compte à un dispositif d'authentification tierce, tel qu'une application d'authentification mobile (Microsoft Authentificator recommandé)
+Pour renforcer la sécurité, l'application propose la mise en place de l'authentification à deux facteurs (A2F). Les utilisateurs peuvent activer cette fonctionnalité dans leur espace personnel (bouton en haut à droite), en associant leur compte à un dispositif d'authentification tierce, tel qu'une application d'authentification mobile (Microsoft Authentificator recommandé).
+Si jamais l'a2f n'est pas activé sur leur compte, ils ne pourront pas consulter leur blog.
+
 ### Page d'acceuil
 La page d'acceuil regroupe 2 fonctionnalités distinctes : L'affichage de tous les blogs du site, en précisant si ils sont publics ou privés, et l'affichage des 5 derniers articles publiés (Bonus).
 ### CRUD & Routes de l'application

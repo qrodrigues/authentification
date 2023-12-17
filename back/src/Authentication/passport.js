@@ -3,16 +3,11 @@ const GithubStrategy = require('passport-github2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport')
 const { createProviderUser, checkPassword, getUserByProviderId } = require('../Repository/usersRepository')
-
-const GOOGLE_CLIENT_ID = "1028460363730-g7l7m2567j69iicet3gncdqhs30ni3p1.apps.googleusercontent.com"
-const GOOGLE_CLIENT_SECRET = "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"
-
-const GITHUB_CLIENT_ID = "e5687e0bd5d388a05373"
-const GITHUB_CLIENT_SECRET = "c6905ff4d8488f5acd7f4aa882b20217be360593"
+require('dotenv').config();
 
 passport.use(new GoogleStrategy({
-  clientID: GOOGLE_CLIENT_ID,
-  clientSecret: GOOGLE_CLIENT_SECRET,
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "/auth/google/callback"
 },
 async function(accessToken, refreshToken, profile, done) {
@@ -38,8 +33,8 @@ async function(accessToken, refreshToken, profile, done) {
 ));
 
 passport.use(new GithubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: "/auth/github/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
