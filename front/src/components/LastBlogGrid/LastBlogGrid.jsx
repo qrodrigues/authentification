@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import BlogRepository from "../../repository/BlogRepository.js";
 
 function LastBlogGrid() {
-  const [blogs, setBlog] = useState(null)
+  const [blogs, setBlog] = useState([])
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -20,7 +20,7 @@ function LastBlogGrid() {
   return (
     <>
       <div className="last_blog_grid">
-        {blogs ?
+        {blogs.length > 0 ?
           blogs.map((blog, index) => (
             <BlogCard blog={blog} key={index} />
           ))
