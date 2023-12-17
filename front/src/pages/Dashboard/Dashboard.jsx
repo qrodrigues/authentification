@@ -27,10 +27,12 @@ function ShowBlog() {
         } catch (error) {
           console.error(error)
         }
+      } else {
+        navigate('/login')
       }
     }
     fetchArticles()
-  }, [user,blog])
+  }, [user, blog, navigate])
 
   const changeVisibility = async () => {
     await BlogRepository.updateBlog(blog._id, blog.title, blog.description, blog.status === "public" ? "private" : "public")

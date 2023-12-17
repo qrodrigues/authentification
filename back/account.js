@@ -29,7 +29,7 @@ router.post('/login', bodyParser.json(), async (req, res) => {
     if (body.mail && body.password) {
         const user = await checkPassword(body.mail, body.password)
         if (user) {
-            jwt_token = jwt.sign({ _id: user._id, username: user.username }, 'monsecretbiengarde')
+            jwt_token = jwt.sign({ _id: user._id, username: user.username }, process.env.TOKEN_SECRET_KEY || 'monsecretbiengarde')
             res.status(200).send({token: jwt_token})
         } else {
             res.status(401).send('Les identifiants ne sont pas correctes.')
@@ -44,7 +44,7 @@ router.get('/login/verify', async (req, res) => {
     const user = await getUserById(req.query.user)
     try {
         if (!token) {
-            throw new Error("Please supply a token");
+            throw new Error("Fournissez un token.");
         }
         // Si le token n'est pas valide, c'est non
         const isValid = authenticator.check(token, user.a2f.secret);
@@ -66,7 +66,7 @@ router.get('/login/verify', async (req, res) => {
 
 router.get('/verify', bodyParser.json(), async (req, res) => {
     if (req.cookies.token) {
-        const user = jwt.verify(req.cookies.token, 'monsecretbiengarde')
+        const user = jwt.verify(req.cookies.token, process.env.TOKEN_SECRET_KEY || 'monsecretbiengarde')
         if (user._id) {
             res.status(200).send({
                 user: {
@@ -85,7 +85,7 @@ router.get('/verify', bodyParser.json(), async (req, res) => {
 })
 
 // A2F
-const authenticatorSecret = 'unsecretvraimenttressecret';
+const authenticatorSecret = process.env.A2F_SECRET_KEY || 'unsecretvraimenttressecret';
 router.get('/a2f/qrcode', async (req, res) => {
     const user = await getUserById(req.query.user)
 
@@ -95,7 +95,7 @@ router.get('/a2f/qrcode', async (req, res) => {
 
     qrcode.toDataURL(otpauth, (err, imageUrl) => {
         if (err) {
-            console.error('Error with QR');
+            throw new Error("Erreur avec le QR Code.");
             return;
         }
         res.status(200).json({
@@ -109,7 +109,7 @@ router.get('/a2f/verify', async (req, res) => {
     const user = await getUserById(req.query.user)
     try {
         if (!token) {
-            throw new Error("Please supply a token");
+            throw new Error("Fournissez un token.");
         }
         // Si le token n'est pas valide, c'est non
         const isValid = authenticator.check(token, user.a2f.secret);

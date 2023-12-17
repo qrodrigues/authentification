@@ -12,7 +12,7 @@ import Dashboard from './pages/Dashboard/Dashboard'
 import Blog  from './pages/Blog/Blog'
 import FormArticlePage from './pages/Article/FormArticlePage/FormArticlePage'
 import DualAuthentication from './pages/DualAuthentication/DualAuthentication'
-import ShowArticles from './components/showArticles/ShowArticles';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 import { useEffect } from "react";
 import { useUser } from './providers/UserContext';
@@ -44,6 +44,7 @@ useEffect(() =>  {
     <>
         <Navbar />
         <Routes>
+          <Route path='*' element={<NotFoundPage />}/>
           <Route path="/" element={<HomePage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />

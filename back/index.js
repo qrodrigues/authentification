@@ -7,6 +7,7 @@ const blogRouter = require('./blog');
 const articleRouter = require('./article')
 const externalAutenticationRouter = require('./externalAuthentication')
 const app = express()
+require('dotenv').config();
 const port = 3000
 
 // Allow cookies axios
@@ -33,6 +34,6 @@ app.use('/auth', externalAutenticationRouter);
 app.use('/blog', blogRouter);
 app.use('/article', articleRouter);
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`App listening on port ${port}`)
 })

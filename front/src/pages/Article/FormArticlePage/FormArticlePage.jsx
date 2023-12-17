@@ -12,6 +12,10 @@ function CreateArticlePage() {
   const { user } = useUser();
   const navigate = useNavigate();
   const { articleid } = useParams();
+  if(!user){
+    navigate('/')
+  }
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setInputs(prevInputs => ({ ...prevInputs, [name]: value }));

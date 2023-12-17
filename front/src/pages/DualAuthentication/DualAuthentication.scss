@@ -23,13 +23,18 @@
     .code .config-btn {
         all: unset;
         padding: 10px 20px;
-        border: 2px solid rgb(34, 143, 53);
+        border: 1.323px solid rgb(34, 143, 53);
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-weight: bold;
         color: white;
         background-color: rgb(34, 143, 53);
         border-radius: 5px;
         cursor: pointer;
         transition: .3s;
         margin-top: 50px;
+        &:hover{
+            border: 1.323px solid rgb(255, 255, 255);
+        }
     }
 
     .code input {

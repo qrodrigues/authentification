@@ -8,8 +8,11 @@ function DualAuthentication() {
     const navigate = useNavigate()
     const [qrcode, setQrcode] = useState(null)
     const { user } = useUser();
-
     const [token, setToken] = useState('')
+    if(!user){
+        navigate('/')
+      }
+
     const extractNumbers = (str) => {
         const numberPattern = /\d+/g;
         const numbersOnly = str.match(numberPattern);

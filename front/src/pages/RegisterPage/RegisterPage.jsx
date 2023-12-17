@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import instanceAxios from '../../helpers/axiosInstance';
+import { useUser } from '../../providers/UserContext';
 
 function App() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
-
+  const { user, setUser } = useUser();
+  if(user){
+    navigate('/')
+  }
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;

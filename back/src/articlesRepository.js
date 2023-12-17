@@ -1,12 +1,11 @@
 const { MongoClient, ObjectId, Long } = require("mongodb");
-const uri = "mongodb+srv://quentinrodrigues:nel5QwlsEArsZTMS@cluster0.bjhioln.mongodb.net/";
 
 async function getArticles() {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
 
         // get all articles
@@ -24,11 +23,11 @@ async function getArticles() {
 }
 
 async function getOneArticle(article_id) {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
 
         // get a specific article
@@ -45,11 +44,11 @@ async function getOneArticle(article_id) {
 }
 
 async function getArticlesByBlog(blog_id) {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
 
         // get a specific article
@@ -67,11 +66,11 @@ async function getArticlesByBlog(blog_id) {
 }
 
 async function createArticle(title, content, blog_id) {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
         // Add a new article in mongo
         const result = await articles.insertOne(
@@ -89,11 +88,11 @@ async function createArticle(title, content, blog_id) {
 }
 
 async function updateArticle(article_id, title, content) {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
 
         // update specific article
@@ -113,11 +112,11 @@ async function updateArticle(article_id, title, content) {
 }
 
 async function deleteArticle(article_id) {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
 
         // delete a specific article 
@@ -133,11 +132,11 @@ async function deleteArticle(article_id) {
 }
 
 async function limitArticle(limit) {
-    const client = new MongoClient(uri);
+    const client = new MongoClient(process.env.MONGO_URI);
     try {
         // get mongo collection
         await client.connect();
-        const database = client.db('livecampus-authentication');
+        const database = client.db(process.env.MONGO_DB);
         const articles = database.collection('articles');
         // selected a limited amount of article
         const result = await articles.find().sort({ _id: -1 }).limit(limit).toArray();

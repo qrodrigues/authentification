@@ -9,7 +9,10 @@ import { useUser } from '../../providers/UserContext';
 function App() {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({});
-  const { setUser } = useUser();
+  const { user, setUser } = useUser();
+  if(user){
+    navigate('/')
+  }
 
   const handleChange = (event) => {
     const name = event.target.name;

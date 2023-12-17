@@ -6,10 +6,12 @@ import { useUser } from "../../providers/UserContext";
 
 function LoginPageDualAuth () {
     const navigate = useNavigate()
-    const { user } = useParams()
+    const { user_params } = useParams()
     const [token, setToken] = useState('')
-    const { setUser } = useUser()
-
+    const { user, setUser } = useUser();
+    if(user){
+      navigate('/')
+    }
     const extractNumbers = (str) => {
         const numberPattern = /\d+/g;
         const numbersOnly = str.match(numberPattern);
@@ -26,7 +28,7 @@ function LoginPageDualAuth () {
       };
 
     const handleVerify = () => {
-        instanceAxios.get(`http://localhost:3000/account/login/verify?user=${user}&token=${token}`).then(async response => {
+        instanceAxios.get(`http://localhost:3000/account/login/verify?user=${user_params}&token=${token}`).then(async response => {
             if (response.data.isValid) {
                 const resp_user = await SessionHelper.getConnectedUser()
                 setUser(resp_user)
