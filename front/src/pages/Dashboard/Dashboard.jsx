@@ -43,10 +43,13 @@ function ShowBlog() {
   }
 
   const disableExtraAuth = async () => {
-    await instanceAxios.get(`http://localhost:3000/a2f/disable?user=${user._id}`).then(() => {
-      navigate(0)
-    })
-  }
+    const confirmation = window.confirm("En désactivant la double authentification, votre blog et vos articles seront supprimés. Continuer ?");
+    if (confirmation) {
+      await instanceAxios.get(`http://localhost:3000/a2f/disable?user=${user._id}`).then(() => {
+        navigate(0);
+      });
+    }
+  };
 
   return (
     <>
