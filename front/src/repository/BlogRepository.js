@@ -53,13 +53,12 @@ async function deleteBlog(id){
 }
 
 async function getBlogByUser(user_id){
+    console.log(user_id);
     try {
         const response = await instanceAxios.get(`http://localhost:3000/blog/user/${user_id}`);
         return response.data;
-
-    } catch (error) {
-        console.error(error)
-        return error
+    } catch {
+        return null
     }
 }
 

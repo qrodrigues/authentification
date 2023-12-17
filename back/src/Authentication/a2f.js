@@ -2,6 +2,7 @@ const express = require('express');
 const qrcode = require('qrcode');
 const { authenticator } = require('otplib');
 const { getUserById, updateUser } = require('../Repository/usersRepository')
+const { createBlog } = require('../Repository/blogsRepository')
 const { generateToken } = require('../Repository/bcryptRepository')
 
 const router = express.Router();
@@ -41,6 +42,13 @@ router.get('/verify', async (req, res) => {
             })
         } else {
             updateUser(user._id, {a2f: {...user.a2f, active: true}})
+            const blog_info = {
+              "title": `Blog de ${user.username}`,
+              "description": `Ceci est le premier blog de ${user.username} `,
+              "author_id": user._id,
+              "status": "private"
+            }
+            await createBlog(blog_info.title, blog_info.description, blog_info.author_id, blog_info.status)
             res.status(200).json({
                 isValid: true
             })

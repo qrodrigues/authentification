@@ -84,7 +84,7 @@ router.get('/user/:id', async (req, res) => {
         if(foundBlog) {
             res.status(200).send(foundBlog)
         } else {
-            res.status(400).send(`Erreur lors de l'obtention du blog de l'utilisateur ${user_id}.`)
+            res.status(200).send(null)
         }
     }
 })
