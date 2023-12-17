@@ -2,7 +2,8 @@ const express = require('express');
 const qrcode = require('qrcode');
 const { authenticator } = require('otplib');
 const { getUserById, updateUser } = require('../Repository/usersRepository')
-const { createBlog } = require('../Repository/blogsRepository')
+const { createBlog, getSingleBlogByUser, deleteBlog } = require('../Repository/blogsRepository')
+const { getArticlesByBlog, deleteArticle } = require('../Repository/articlesRepository')
 const { generateToken } = require('../Repository/bcryptRepository')
 
 const router = express.Router();
@@ -44,7 +45,7 @@ router.get('/verify', async (req, res) => {
             await updateUser(user._id, {a2f: {...user.a2f, active: true}})
             const blog_info = {
               "title": `Blog de ${user.username}`,
-              "description": `Ceci est le premier blog de ${user.username} `,
+              "description": `Découvrez les articles de ${user.username} `,
               "author_id": user._id,
               "status": "private"
             }
@@ -67,6 +68,12 @@ router.get('/verify', async (req, res) => {
 router.get('/disable', async (req, res) => {
     const user = await getUserById(req.query.user)
     await updateUser(user._id, {a2f: {...user.a2f, active: false}})
+    const blog = await getSingleBlogByUser(user._id)
+    await deleteBlog(blog._id)
+    const articles = await getArticlesByBlog(blog._id)
+    articles.forEach (article => {
+        deleteArticle(article._id)
+    })
     res.cookie('token', generateToken({
         _id: user._id,
         username: user.username,
