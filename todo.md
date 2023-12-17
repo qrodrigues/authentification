@@ -1,6 +1,5 @@
 Obligatoire :  
 - [X] Readme
-- [ ] Gérer mieux le code secret de l'A2F
 - [X] Sécuriser toutes les routes du back en vérifiant le token (middleware)
 - [X] Autoriser la création et gestion de son blog uniquement si A2F
 - [x] Mettre tous les codes secrets en config (variables d'environnements)
