@@ -16,7 +16,6 @@ router.get('/', async (req, res) => {
 
 // get blog by ID
 router.get('/:blogid', async (req, res) => {
-
     const blogId = req.params.blogid;
     if(blogId) {
         const readBlog = await getOneBlog(blogId)

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { getArticles, getOneArticle, getArticlesByBlog, createArticle, updateArticle, deleteArticle, limitArticle } = require('./Repository/articlesRepository')
+const { verifyTokenMiddleware } = require('./Repository/bcryptRepository')
 const router = express.Router();
 
 // get all article
@@ -36,7 +37,7 @@ router.get('/blog/:blogId', async (req, res) => {
 })
 
 // add an article
-router.post('/', bodyParser.json(), async (req, res) => {
+router.post('/', bodyParser.json(), verifyTokenMiddleware, async (req, res) => {
     const body = req.body
     if(body.title && body.content && body.blog_id){
         const createdArticle = await createArticle(body.title, body.content, body.blog_id)

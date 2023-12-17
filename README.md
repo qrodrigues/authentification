@@ -108,6 +108,8 @@ La stratégie Local nous permet de faire un système d'authentification homogèn
 
 L'authentification fonctionne avec un cookie nommé **token**, c'est un JWT comportant les informations de l'utilisateur connecté.
 
+Un middleware a été mis en place, il permet de vérifier si l'utilisateur est bien connecté avant d'accéder aux routes du backend. Pour l'exemple, nous l'utilisons sur la route de création d'un article.
+
 
 ---
 Roche Sébastien - Rodrigues Quentin - Singh Paul - Livecampus 2023
