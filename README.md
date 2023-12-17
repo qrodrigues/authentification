@@ -3,7 +3,7 @@
 
 
 ## 🔎 Informations générales : 
-- Groupe : RODRIGUES Quentin, ROCHE Sébastien, SINGH Paul    
+- Groupe : RODRIGUES Quentin, ROCHE Sébastien
 - Stack du projet :
     - ReactJS pour le frontend 
     - NodeJS (Express) pour le backend
@@ -112,4 +112,4 @@ Un middleware a été mis en place, il permet de vérifier si l'utilisateur est 
 
 
 ---
-Roche Sébastien - Rodrigues Quentin - Singh Paul - Livecampus 2023
+Roche Sébastien - Rodrigues Quentin - Livecampus 2023
