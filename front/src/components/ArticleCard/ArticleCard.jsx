@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function ArticleCard(props) {
     const navigate = useNavigate()
+    const isAuhtor = props.canEdit
 
     const handleDelete = async () => {
         if (props.article) {
@@ -22,12 +23,14 @@ function ArticleCard(props) {
                 <h3>{props.article.title}</h3>
                 <p>{props.article.content}</p>
             </div>
+            { isAuhtor && (
             <div className="article-actions">
                 <Link to={`/dashboard/update/${props.article._id}`}>
                     <i className="fa-solid fa-pencil"></i>
                 </Link>
                 <i className="fa-solid fa-trash"onClick={() => handleDelete()}></i>
             </div>
+            )}
         </div>
     )
 }
