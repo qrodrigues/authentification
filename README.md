@@ -3,7 +3,7 @@
 
 
 ## 🔎 Informations générales : 
-- Groupe : RODRIGUES Quentin, ROCHE Sébastien
+- Groupe : RODRIGUES Quentin, ROCHE Sébastien, SINGH Paul
 - Stack du projet :
     - ReactJS pour le frontend 
     - NodeJS (Express) pour le backend
@@ -62,7 +62,7 @@ Si jamais l'a2f n'est pas activé sur leur compte, ils ne pourront pas consulter
 
 ### Page d'acceuil
 La page d'acceuil regroupe 2 fonctionnalités distinctes : L'affichage de tous les blogs du site, en précisant si ils sont publics ou privés, et l'affichage des 5 derniers articles publiés (Bonus).
-### CRUD & Routes de l'application
+### Frontend : CRUD & Routes de l'application
 
 #### Le CRUD : 
 Notre application est équipée d'un basique CRUD, permettant de voir : 
@@ -93,12 +93,54 @@ const instance = axios.create()
 instance.defaults.withCredentials = true
 ```
 
+### Backend : Routes & Configuration
+
+#### La configuration d'Express :
 Dans le backend de l'application, nous avons configuré express pour qu'il s'utilise uniquement avec le frontend, et en utilisant les credentials.
 ```js
 res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
 res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 res.setHeader('Access-Control-Allow-Credentials', true);
+```
+
+#### Les routes du backend : 
+
+Voici  les routes de notre application backend : 
+```yml
+Blog
+- GET : /blog # Récupère tous les articles
+- GET : /blog/:blog_id # Récupère un blog
+- POST : /blog # Ajoute un blog
+- PUT : /blog/:blog_id # Met un blog à jour
+- DELETE : /blog/:blog_id # Supprime un blog
+
+Article
+- GET : /article # Récupère tous les articles
+- GET : /article/:article_id # Récupère un article
+- POST : /article # Ajoute un article
+- PUT : /article # Met un article à jour
+- GET : /article/blog/:blog_id # Récupère tous les articles pour un blog
+- DELETE : /article/:article_id # Supprime un article
+- GET : /article/limit/:limit # Récupère un nombre limité d'articles
+
+A2F
+- GET : /a2f/ # Obtenir un QR code
+- GET : /verify/ # Vérifier un QR code
+- GET : /disable/ # Désactive l'A2F
+- GET : /login/verify # Vérifier un QR code d'un utilisateur
+
+Auth
+- GET : /auth/google # Route d'authentification Google
+- GET : /auth/google/callback # Route   réponse de l'authentification Google
+- GET : /auth/github # Route d'authentification Github
+- GET : /auth/github/callback # Route réponse de l'authentification Github
+- GET : /auth/login # Route d'authentification Local
+- GET : /auth/login/failed # Failure URL
+
+Account
+- GET : /account/create # Créer un utilisateur
+- GET : /account/verify # Récupérer l'utilisateur connecté
 ```
 
 #### L'authentification :
