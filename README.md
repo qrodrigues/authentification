@@ -84,6 +84,28 @@ Voici les différentes routes de l'application :
     <Route path="/dashboard/update/:articleid" element={<FormArticlePage />} />
 </Routes>
 ```
+#### Les requêtes :
+Afin de réaliser des requêtes homogènes vers le backend, nous avons choisi de créer une instance Axios.
+```js
+const instance = axios.create()
+instance.defaults.withCredentials = true
+```
+
+Dans le backend de l'application, nous avons configuré express pour qu'il s'utilise uniquement avec le frontend, et en utilisant les credentials.
+```js
+res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+res.setHeader('Access-Control-Allow-Credentials', true);
+```
+
+#### L'authentification :
+Afin de réaliser un système d'authentification complet, nous avons fais le choix d'utiliser la librairie Passport. Nous avons utilisé trois stratégies : Local, Google et Github.
+
+La stratégie Local nous permet de faire un système d'authentification homogène dans l'application.
+
+L'authentification fonctionne avec un cookie nommé **token**, c'est un JWT comportant les informations de l'utilisateur connecté.
+
 
 ---
 Roche Sébastien - Rodrigues Quentin - Singh Paul - Livecampus 2023
