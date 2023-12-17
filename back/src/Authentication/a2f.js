@@ -41,7 +41,7 @@ router.get('/verify', async (req, res) => {
                 isValid: false
             })
         } else {
-            updateUser(user._id, {a2f: {...user.a2f, active: true}})
+            await updateUser(user._id, {a2f: {...user.a2f, active: true}})
             const blog_info = {
               "title": `Blog de ${user.username}`,
               "description": `Ceci est le premier blog de ${user.username} `,
@@ -49,6 +49,11 @@ router.get('/verify', async (req, res) => {
               "status": "private"
             }
             await createBlog(blog_info.title, blog_info.description, blog_info.author_id, blog_info.status)
+            res.cookie('token', generateToken({
+                _id: user._id,
+                username: user.username,
+                a2f: true
+            }))
             res.status(200).json({
                 isValid: true
             })
@@ -61,7 +66,12 @@ router.get('/verify', async (req, res) => {
 // Désactive l'A2F
 router.get('/disable', async (req, res) => {
     const user = await getUserById(req.query.user)
-    updateUser(user._id, {a2f: {...user.a2f, active: false}})
+    await updateUser(user._id, {a2f: {...user.a2f, active: false}})
+    res.cookie('token', generateToken({
+        _id: user._id,
+        username: user.username,
+        a2f: false
+    }))
     res.status(200).send('ok')
 });
 

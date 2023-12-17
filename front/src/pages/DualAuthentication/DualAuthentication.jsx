@@ -31,7 +31,7 @@ function DualAuthentication() {
     const handleVerify = () => {
         instanceAxios.get(`http://localhost:3000/a2f/verify?user=${user._id}&token=${token}`).then(response => {
             if (response.data.isValid) {
-                navigate('/dashboard')
+                navigate('/')
             }
         })
     }

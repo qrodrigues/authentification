@@ -78,7 +78,10 @@ function ShowBlog() {
           </>
         )
           : (
-            <h1>Activer l&apos;A2F</h1>
+            <div className="no-blog-message">
+              <h3>Créer un blog</h3>
+              <p>L&apos;authentification à deux facteurs est nécessaire pour créer un blog.</p>
+            </div>
           )
         }
       </div>

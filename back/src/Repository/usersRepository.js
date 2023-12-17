@@ -22,13 +22,6 @@ async function createUser(username, mail, password) {
     const user = await users.findOne({ mail })
     if (user === null) {
       const insertUser = await users.insertOne({ username, mail, password: hashedPassword, a2f: {active: false, secret: 'unsecretvraimenttressecret'} });
-      // const blog_info = {
-      //   "title": `Blog de ${username}`,
-      //   "description": `Ceci est le premier blog de ${username} `,
-      //   "author_id": insertUser.insertedId,
-      //   "status": "private"
-      // }
-      // await createBlog(blog_info.title, blog_info.description, blog_info.author_id, blog_info.status)
       return insertUser.insertedId
     } else {
       return null
@@ -70,13 +63,6 @@ async function createProviderUser(username, providerId, provider) {
     const user = await users.findOne({ provider, providerId })
     if (user === null) {
       const insertUser = await users.insertOne({ username, provider, providerId, a2f: {active: false, secret: 'unsecretvraimenttressecret'} });
-      const blog_info = {
-        "title": `Blog de ${username}`,
-        "description": `Ceci est le premier blog de ${username} `,
-        "author_id": insertUser.insertedId,
-        "status": "private"
-      }
-      await createBlog(blog_info.title, blog_info.description, blog_info.author_id, blog_info.status)
       return insertUser.insertedId
     } else {
       return null
