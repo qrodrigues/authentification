@@ -20,12 +20,14 @@
     display: flex;
     gap: 10px;
     margin: 10px 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: bold;
 }
 
 .button-config .config-btn {
     all: unset;
     padding: 10px 20px;
-    border: 2px solid rgb(180, 15, 15);
+    border: 1.323px solid rgb(180, 15, 15);
     color: rgb(180, 15, 15);
     border-radius: 5px;
     cursor: pointer;
@@ -37,8 +39,18 @@
     background-color: rgb(180, 15, 15);
 }
 
+.button-config .visibility {
+    border: 1.323px solid rgb(34, 143, 53);
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
 .button-config .a2f {
-    border: 2px solid rgb(34, 143, 53);
+    border: 1.323px solid rgb(34, 143, 53);
     color: white;
     background-color: rgb(34, 143, 53);
 }

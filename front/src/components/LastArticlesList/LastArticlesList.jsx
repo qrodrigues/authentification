@@ -7,11 +7,11 @@ import Loader from "../Loader/Loader";
 
 function TopArticlesList() {
   const [articles, setArticles] = useState(null)
-
+  const limitArticleAmount = 5
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const data = await ArticleRepository.getAmountArticles(5)
+      const data = await ArticleRepository.getAmountArticles(limitArticleAmount)
       setArticles(data)
     }
     fetchArticles()
@@ -21,7 +21,7 @@ function TopArticlesList() {
   return (
     <>
       <div className="top_blog">
-        <h2>Les derniers articles <i className="fa-regular fa-star"></i></h2>
+        <h2>Les {limitArticleAmount} derniers articles <i className="fa-regular fa-star"></i></h2>
         {articles ?
           articles.map((article, index) => (
             <TopArticle article={article} key={index} />

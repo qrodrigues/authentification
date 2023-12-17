@@ -20,28 +20,6 @@ import SessionHelper from './helpers/SessionHelper';
 
 
 function App() {
-
-const articles = [
-  {
-    "_id": "657c949e78ac53aa9d485c2a",
-    "title": "Maîtrisez JavaScript en 30 jours",
-    "content": "Explorez les concepts avancés de JavaScript et devenez un expert en développement web. Des tutoriels pratiques et des astuces utiles vous attendent.",
-    "blog_id": "6579c45f792c2be038318ffe"
-  },
-  {
-    "_id": "657c949e78ac53aa9d485c2a",
-    "title": "Maîtrisez JavaScript en 30 jours",
-    "content": "Explorez les concepts avancés de JavaScript et devenez un expert en développement web. Des tutoriels pratiques et des astuces utiles vous attendent.",
-    "blog_id": "6579c45f792c2be038318ffe"
-  },
-  {
-    "_id": "657c949e78ac53aa9d485c2a",
-    "title": "Maîtrisez JavaScript en 30 jours",
-    "content": "Explorez les concepts avancés de JavaScript et devenez un expert en développement web. Des tutoriels pratiques et des astuces utiles vous attendent.",
-    "blog_id": "6579c45f792c2be038318ffe"
-  }
-]
-
 const {setUser} = useUser();   
 
 useEffect(() =>  {
@@ -75,7 +53,6 @@ useEffect(() =>  {
           <Route path="/dashboard/a2f" element={<DualAuthentication />} />
           <Route path="/blog/:blogid" element={<Blog />} />
           <Route path="/dashboard/new" element={<FormArticlePage />} />
-          <Route path="/articles" element={<ShowArticles articles={articles} canEdit={true} />} />
           {/* <Route path="/dashboard/update" element={<UpdateBlogPage />} /> */}
           <Route path="/dashboard/update/:articleid" element={<FormArticlePage />} />
         </Routes>

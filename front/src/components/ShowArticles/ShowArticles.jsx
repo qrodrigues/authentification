@@ -20,7 +20,6 @@ function ShowArticles (props) {
             </div>
           </div>
           <div className="article-grid">
-  
             {articles ?
                 articles.map((article, index) => (
                   <ArticleCard article={article} canEdit={isAuthor} key={index} />

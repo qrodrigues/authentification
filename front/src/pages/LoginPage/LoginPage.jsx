@@ -66,7 +66,6 @@ function App() {
             <input name="mail" type="text" value={inputs.mail || ""} onChange={handleChange} placeholder="Adresse email" />
             <input name="password" type="password" value={inputs.password || ""} onChange={handleChange} placeholder="Mot de passe" />
             <input type="submit" className="button" value="Se connecter" />
-            <p><input className="check" type="checkbox" />Se souvenir de moi<a className="forget" href="#">Mot de passe oublié ?</a></p>
             <h5>Pas de compte ?<Link to="/register"> Créer un compte</Link></h5>
           </form>
         </div>

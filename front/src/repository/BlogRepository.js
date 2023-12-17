@@ -26,6 +26,7 @@ async function getBlog(id){
 }
 
 async function updateBlog(id, title, description, status){
+    console.log(id,title,description,status);
     try {
         const response = await instanceAxios.put(`http://localhost:3000/blog/${id}`,{
             title : title,

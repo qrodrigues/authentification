@@ -57,15 +57,19 @@
     }
 
     .button {
-        background-color: rgb(53, 53, 53);
+        padding: 0.5rem 0.8rem;
+        border-radius: 7.27px;
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        border: 1.323px solid black;
         padding: 10px;
+        background-color: black;
         color: white;
         margin-top: 20px;
-    }
-
-    .button:hover {
-        background-color: rgb(0, 0, 0);
-        padding: 10px;
-        color: white;
+        cursor: pointer;
+        &:hover{
+            background-color: white;
+            color: black;
+        }
     }
 }
