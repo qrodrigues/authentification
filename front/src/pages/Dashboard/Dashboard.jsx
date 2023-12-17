@@ -10,7 +10,6 @@ import ShowArticles from "../../components/showArticles/ShowArticles.jsx";
 function ShowBlog() {
   const { user } = useUser();
   const [articles, setArticle] = useState(null)
-  // console.log('user:', user);
 
   const navigate = useNavigate()
 

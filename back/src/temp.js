@@ -27,8 +27,6 @@ async function addA2f() {
         { $set: { a2f: { active: false, secret: 'unsecretvraimenttressecret' } } } // Mise à jour de a2f avec active: false et secret aléatoire
       );
     }
-
-    console.log(usersList);
   } finally {
     await client.close();
   }

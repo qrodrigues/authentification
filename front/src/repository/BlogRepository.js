@@ -7,7 +7,7 @@ async function getBlogs(){
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 
@@ -19,7 +19,7 @@ async function getBlog(id){
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 
@@ -35,7 +35,7 @@ async function updateBlog(id, title, description, status){
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -46,7 +46,7 @@ async function deleteBlog(id){
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -57,7 +57,7 @@ async function getBlogByUser(user_id){
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }

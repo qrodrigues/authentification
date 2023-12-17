@@ -40,7 +40,6 @@ router.post('/login', bodyParser.json(), async (req, res) => {
 })
 
 router.get('/login/verify', async (req, res) => {
-    console.log(req.query);
     const token = req.query.token;
     const user = await getUserById(req.query.user)
     try {
@@ -96,7 +95,7 @@ router.get('/a2f/qrcode', async (req, res) => {
 
     qrcode.toDataURL(otpauth, (err, imageUrl) => {
         if (err) {
-            console.log('Error with QR');
+            console.error('Error with QR');
             return;
         }
         res.status(200).json({

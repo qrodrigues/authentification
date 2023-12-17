@@ -48,10 +48,8 @@ useEffect(() =>  {
     const fetchUser = async () => {
         try {
             const resp_user = await SessionHelper.getConnectedUser();
-            console.log(resp_user);
             return resp_user
         } catch (error) {
-            console.log(error);
             return null
         }
     }

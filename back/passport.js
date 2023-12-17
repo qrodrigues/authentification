@@ -21,15 +21,17 @@ async function(accessToken, refreshToken, profile, done) {
   if (idUser) {
     done(null, {
       _id: idUser,
-      username: profile.displayName
+      username: profile.displayName,
+      a2f: false
     })
   }
   // L'utilisateur existait déjà
   else {
-    idUser = await getUserByProviderId('google', profile.id)
+    user = await getUserByProviderId('google', profile.id)
     done(null, {
-      _id: idUser,
-      username: profile.displayName
+      _id: user._id,
+      username: user.username,
+      a2f: user.a2f.active
     })
   }
 }
@@ -46,15 +48,17 @@ passport.use(new GithubStrategy({
     if (idUser) {
       done(null, {
         _id: idUser,
-        username: profile.displayName
+        username: profile.displayName,
+        a2f: false
       })
     }
     // L'utilisateur existait déjà
     else {
-      idUser = await getUserByProviderId('github', profile.id)
+      user = await getUserByProviderId('github', profile.id)
       done(null, {
-        _id: idUser,
-        username: profile.displayName
+        _id: user._id,
+        username: user.username,
+        a2f: user.a2f.active
       })
     }
   }

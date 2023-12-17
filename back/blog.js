@@ -50,7 +50,6 @@ router.put('/:blogid', bodyParser.json(), async (req, res) => {
     const blogId = req.params.blogid
     if(blogId && req.body) {
         const updatedBlog = await updateBlog(blogId, req.body)
-        console.log(updatedBlog)
         if(updatedBlog) {
             res.status(200).send(`Blog ${updatedBlog} modifié.`)
         } else {

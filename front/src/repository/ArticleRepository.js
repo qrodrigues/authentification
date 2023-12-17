@@ -7,7 +7,7 @@ async function getArticles() {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -15,11 +15,10 @@ async function getArticles() {
 async function getArticle(articleId) {
     try {
         const response = await instanceAxios.get(`http://localhost:3000/article/${articleId}`);
-        console.log(response);
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -30,7 +29,7 @@ async function getArticleByBlog(blogId) {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -46,7 +45,7 @@ async function createArticle(blogId, title, content) {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -61,7 +60,7 @@ async function updateArticle(articleId, title, content) {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -72,7 +71,7 @@ async function deleteArticle(articleId) {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }
@@ -83,7 +82,7 @@ async function getAmountArticles(limit) {
         return response.data;
 
     } catch (error) {
-        console.log(error)
+        console.error(error)
         return error
     }
 }

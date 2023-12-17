@@ -40,7 +40,6 @@ router.post('/', bodyParser.json(), async (req, res) => {
     const body = req.body
     if(body.title && body.content && body.blog_id){
         const createdArticle = await createArticle(body.title, body.content, body.blog_id)
-        console.log(createdArticle);
         if (createdArticle) {
             res.status(200).send(`Article ${createdArticle} créé.`)
         } else {
@@ -57,7 +56,6 @@ router.put('/:articleId', bodyParser.json(), async (req, res) => {
     const body = req.body
     if(body.title && body.content && article_id){
         const updatedArticle = await updateArticle(article_id, body.title, body.content)
-        console.log(updatedArticle);
         if (updatedArticle) {
             res.status(200).send(`Article ${article_id} modifié.`)
         } else {

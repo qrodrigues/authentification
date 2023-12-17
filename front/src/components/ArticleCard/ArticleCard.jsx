@@ -10,7 +10,6 @@ function ArticleCard(props) {
     const handleDelete = async () => {
         if (props.article) {
             if (window.confirm("Voulez-vous vraiment supprimer cet article ?")) {
-                console.log("article supprimé", props.article._id);
                 await ArticleRepository.deleteArticle(props.article._id);
                 navigate(0)
             }

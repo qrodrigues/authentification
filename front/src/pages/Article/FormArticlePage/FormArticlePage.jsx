@@ -12,7 +12,6 @@ function CreateArticlePage() {
   const { user } = useUser();
   const navigate = useNavigate();
   const { articleid } = useParams();
-  console.log(articleid);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setInputs(prevInputs => ({ ...prevInputs, [name]: value }));
@@ -29,13 +28,11 @@ function CreateArticlePage() {
         if(articleid){ // if modification
           const article = await ArticleRepository.updateArticle(articleid, inputs.title, inputs.content)
           if(article){
-            console.log("article :",article);
             navigate("/dashboard");
           }
         } else { // if creation
           const article = await ArticleRepository.createArticle(blog._id, inputs.title, inputs.content)
           if(article){
-            console.log("article :",article);
             navigate("/dashboard");
           }
         }
@@ -50,7 +47,7 @@ function CreateArticlePage() {
             const article = await ArticleRepository.getArticle(articleid)
             setInputs({ title: article.title, content: article.content })
         } catch (error) {
-          console.log("error");
+          console.error("error");
         }
       }
     }

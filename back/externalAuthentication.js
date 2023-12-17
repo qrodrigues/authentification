@@ -50,9 +50,14 @@ router.get('/google/callback', (req, res, next) => {
             })
         }
 
-        // Créer le cookie de session
-        res.cookie('token', generateToken(user))
-        res.status(200).redirect(CLIENT_URL)
+        // L'utilisateur n'a pas l'A2F
+        if (!user.a2f) {
+            res.cookie('token', generateToken(user))
+            res.status(200).redirect(CLIENT_URL)
+        } else {
+            // L'utilisateur a l'A2F
+            res.status(200).redirect(`http://localhost:5173/login/a2f/${user._id}`)
+        }
     }
     )(req, res, next)
 }
@@ -82,9 +87,14 @@ router.get('/github/callback', (req, res, next) => {
             })
         }
 
-        // Créer le cookie de session
-        res.cookie('token', generateToken(user))
-        res.status(200).redirect(CLIENT_URL)
+        // L'utilisateur n'a pas l'A2F
+        if (!user.a2f) {
+            res.cookie('token', generateToken(user))
+            res.status(200).redirect(CLIENT_URL)
+        } else {
+            // L'utilisateur a l'A2F
+            res.status(200).redirect(`http://localhost:5173/login/a2f/${user._id}`)
+        }
     }
     )(req, res, next)
 }
@@ -112,7 +122,6 @@ router.post('/login', bodyParser.json(), (req, res, next) => {
             }
 
             // L'utilisateur n'a pas l'A2F
-            console.log('user:', user);
             if (!user.a2f) {
                 res.cookie('token', generateToken(user))
                 res.status(200).json({
