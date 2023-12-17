@@ -2,10 +2,11 @@ const express = require('express')
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session')
 
-const accountRouter = require('./account');
-const blogRouter = require('./blog');
-const articleRouter = require('./article')
-const externalAutenticationRouter = require('./externalAuthentication')
+const accountRouter = require('./src/Authentication/account');
+const blogRouter = require('./src/blog');
+const articleRouter = require('./src/article')
+const a2fRouter = require('./src/Authentication/a2f')
+const loginRouter = require('./src/Authentication/login')
 const app = express()
 require('dotenv').config();
 const port = 3000
@@ -29,9 +30,19 @@ app.use(
   })
 )
 
+// Route de gestion de compte
 app.use('/account', accountRouter);
-app.use('/auth', externalAutenticationRouter);
+
+// Route de login
+app.use('/auth', loginRouter);
+
+// Route de double authentification
+app.use('/a2f', a2fRouter)
+
+// Routes de blogs
 app.use('/blog', blogRouter);
+
+// Route d'articles
 app.use('/article', articleRouter);
 
 app.listen(process.env.PORT || 3000, () => {

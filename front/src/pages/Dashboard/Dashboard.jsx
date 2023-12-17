@@ -43,7 +43,7 @@ function ShowBlog() {
   }
 
   const disableExtraAuth = async () => {
-    await instanceAxios.get(`http://localhost:3000/account/a2f/disable?user=${user._id}`).then(() => {
+    await instanceAxios.get(`http://localhost:3000/a2f/disable?user=${user._id}`).then(() => {
       navigate(0)
     })
   }

@@ -6,7 +6,7 @@ import { useUser } from "../../providers/UserContext";
 
 function LoginPageDualAuth () {
     const navigate = useNavigate()
-    const { user_params } = useParams()
+    const { user_id } = useParams()
     const [token, setToken] = useState('')
     const { user, setUser } = useUser();
     if(user){
@@ -28,7 +28,7 @@ function LoginPageDualAuth () {
       };
 
     const handleVerify = () => {
-        instanceAxios.get(`http://localhost:3000/account/login/verify?user=${user_params}&token=${token}`).then(async response => {
+        instanceAxios.get(`http://localhost:3000/a2f/login/verify?user=${user_id}&token=${token}`).then(async response => {
             if (response.data.isValid) {
                 const resp_user = await SessionHelper.getConnectedUser()
                 setUser(resp_user)

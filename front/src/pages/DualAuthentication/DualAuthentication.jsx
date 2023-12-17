@@ -29,7 +29,7 @@ function DualAuthentication() {
       };
 
     const handleVerify = () => {
-        instanceAxios.get(`http://localhost:3000/account/a2f/verify?user=${user._id}&token=${token}`).then(response => {
+        instanceAxios.get(`http://localhost:3000/a2f/verify?user=${user._id}&token=${token}`).then(response => {
             if (response.data.isValid) {
                 navigate('/dashboard')
             }
@@ -38,7 +38,7 @@ function DualAuthentication() {
 
     useEffect(() => {
         const getQrcode = async () => {
-            const qrcode = await instanceAxios.get(`http://localhost:3000/account/a2f/qrcode?user=${user._id}`)
+            const qrcode = await instanceAxios.get(`http://localhost:3000/a2f/qrcode?user=${user._id}`)
             setQrcode(qrcode.data.url)
         }
 

@@ -57,7 +57,7 @@ Un utilisateur peut s'inscrire en fournissant les informations requises telles q
 - #### Authentification tierce 
     Pour une connexion simplifiée, les utilisateurs peuvent opter pour l'authentification tierce en utilisant des services de Google et Github.
 ### Mise en place de l'A2F 
-Pour renforcer la sécurité, l'application propose la mise en place de l'authentification à deux facteurs (A2F). Les utilisateurs peuvent activer cette fonctionnalité dans leur espace personnel (bouton en haut à droite), en associant leur compte à un dispositif d'authentification tierce, tel qu'une application d'authentification mobile (Microsoft Authentificator dans notre cas)
+Pour renforcer la sécurité, l'application propose la mise en place de l'authentification à deux facteurs (A2F). Les utilisateurs peuvent activer cette fonctionnalité dans leur espace personnel (bouton en haut à droite), en associant leur compte à un dispositif d'authentification tierce, tel qu'une application d'authentification mobile (Microsoft Authentificator recommandé)
 ### Page d'acceuil
 La page d'acceuil regroupe 2 fonctionnalités distinctes : L'affichage de tous les blogs du site, en précisant si ils sont publics ou privés, et l'affichage des 5 derniers articles publiés (Bonus).
 ### CRUD & Routes de l'application
@@ -70,19 +70,19 @@ Notre application est équipée d'un basique CRUD, permettant de voir :
 #### Les Routes :
 Voici les différentes routes de l'application : 
 ```js
-        <Routes>  
-          <Route path='*' element={<NotFoundPage />}/>  
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/login/a2f/:user" element={<LoginPageDualAuth />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/a2f" element={<DualAuthentication />} />
-          <Route path="/blog/:blogid" element={<Blog />} />
-          <Route path="/dashboard/new" element={<FormArticlePage />} />
-          <Route path="/dashboard/update/:articleid" element={<FormArticlePage />} />
-        </Routes>
+<Routes>  
+    <Route path='*' element={<NotFoundPage />}/>  
+    <Route path="/" element={<HomePage />} />
+    <Route path="/home" element={<HomePage />} />
+    <Route path="/register" element={<RegisterPage />} />
+    <Route path="/login" element={<LoginPage />} />
+    <Route path="/login/a2f/:user" element={<LoginPageDualAuth />} />
+    <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/dashboard/a2f" element={<DualAuthentication />} />
+    <Route path="/blog/:blogid" element={<Blog />} />
+    <Route path="/dashboard/new" element={<FormArticlePage />} />
+    <Route path="/dashboard/update/:articleid" element={<FormArticlePage />} />
+</Routes>
 ```
 
 ---

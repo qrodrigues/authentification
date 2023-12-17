@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
-const { createBlog, getBlogs, updateBlog, deleteBlog, getOneBlog, getSingleBlogByUser } = require('./src/blogsRepository')
+const { createBlog, getBlogs, updateBlog, deleteBlog, getOneBlog, getSingleBlogByUser } = require('./Repository/blogsRepository')
 
 const router = express.Router();
 
@@ -30,6 +30,7 @@ router.get('/:blogid', async (req, res) => {
     }
 })
 
+// Create blog
 router.post('/', bodyParser.json(), async (req, res) => {
     // Vérification des variables
     const body = req.body

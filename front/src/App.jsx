@@ -49,7 +49,7 @@ useEffect(() =>  {
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/login/a2f/:user" element={<LoginPageDualAuth />} />
+          <Route path="/login/a2f/:user_id" element={<LoginPageDualAuth />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/a2f" element={<DualAuthentication />} />
           <Route path="/blog/:blogid" element={<Blog />} />

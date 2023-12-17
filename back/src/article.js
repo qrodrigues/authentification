@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { getArticles, getOneArticle, getArticlesByBlog, createArticle, updateArticle, deleteArticle, limitArticle } = require('./src/articlesRepository')
+const { getArticles, getOneArticle, getArticlesByBlog, createArticle, updateArticle, deleteArticle, limitArticle } = require('./Repository/articlesRepository')
 const router = express.Router();
 
 // get all article
@@ -95,8 +95,5 @@ router.get('/limit/:limit', async (req, res) => {
         res.status(400).send("Une limite d'article est nécessaire.")
     }
 })
-
-
-
 
 module.exports = router;

@@ -2,7 +2,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport')
-const { createProviderUser, checkPassword, getUserByProviderId } = require('./src/usersRepository')
+const { createProviderUser, checkPassword, getUserByProviderId } = require('../Repository/usersRepository')
 
 const GOOGLE_CLIENT_ID = "1028460363730-g7l7m2567j69iicet3gncdqhs30ni3p1.apps.googleusercontent.com"
 const GOOGLE_CLIENT_SECRET = "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"
